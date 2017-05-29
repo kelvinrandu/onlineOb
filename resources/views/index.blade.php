@@ -49,13 +49,14 @@
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                              <!--  <a href="{{ action("homeController@showLoginForm") }}" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Login as admin</span></a>-->
+
+                             <a href="{{ url('/login') }}" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Login as admin</span></a>
                             </li>
                           <!-- <li>
                                 <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                             </li>-->
                             <li>
-                                <!--<a href="{{ action("homeController@LoginFormClient") }}" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">report crime</span></a>-->
+                                <a href="{{ url('/register') }}" class="btn btn-default btn-lg"><i class="fa-user"></i> <span class="network-name">report crime</span></a>
                             </li>
                         </ul>
                     </div>
