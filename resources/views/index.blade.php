@@ -56,7 +56,7 @@
                                 <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                             </li>-->
                             <li>
-                                <a href="{{ url('/register') }}" class="btn btn-default btn-lg"><i class="fa-user"></i> <span class="network-name">report crime</span></a>
+                                <a href="{{ url('/register') }}" class="btn btn-default btn-lg"><i class="fa fa-user"></i> <span class="network-name">report crime</span></a>
                             </li>
                         </ul>
                     </div>
