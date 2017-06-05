@@ -11,9 +11,9 @@ class Admin extends Authenticatable
 
     protected $guard ='admin';
 
-    public function role()
+    public function roles()
     {
-      return $this->belongsToMany(role::class,'admin-roles');
+      return $this->belongsToMany(roles::class,'role_admins');
     }
 
     /**
