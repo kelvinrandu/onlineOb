@@ -50,7 +50,7 @@
                         <ul class="list-inline intro-social-buttons">
                             <li>
 
-                             <a href="{{ url('/login') }}" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Login as admin</span></a>
+                             <a href="{{ url('/admin') }}" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Login as admin</span></a>
                             </li>
                           <!-- <li>
                                 <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>

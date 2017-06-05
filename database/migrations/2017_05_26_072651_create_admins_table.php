@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWardsTable extends Migration
+class CreateadminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWardsTable extends Migration
      */
     public function up()
     {
-      Schema::create('wards', function (Blueprint $table) {
+      Schema::create('admins', function (Blueprint $table) {
           $table->increments('id');
           $table->string('code')->unique();
           $table->string('station_name')->unique();
@@ -31,6 +31,6 @@ class CreateWardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wards');
+        Schema::dropIfExists('admins');
     }
 }

@@ -5,11 +5,16 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Ward extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
 
     protected $guard ='admin';
+
+    public function role()
+    {
+      return $this->belongsToMany(role::class,'admin-roles');
+    }
 
     /**
      * The attributes that are mass assignable.
