@@ -18,11 +18,18 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         switch ($guard) {
+        //  case 'detective':
+          //  if (Auth::guard($guard)->check()&& $admin->is_detective() ) {
+            // return redirect()->route('detective.dashboard'); /* tests against the admin guard */
+           //}
+//break;
+
           case 'admin':
-            if (Auth::guard($guard)->check()) {
-              return redirect()->route('admin.dashboard'); /* tests against the admin guard */
-            }
-            break;
+           if (Auth::guard($guard)->check()) {
+             return redirect()->route('detective.dashboard'); /* tests against the admin guard */
+           }
+           break;
+
 
           default:
           if (Auth::guard($guard)->check()) {
