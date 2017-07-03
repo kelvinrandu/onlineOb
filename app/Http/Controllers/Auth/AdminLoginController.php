@@ -35,15 +35,8 @@ class AdminLoginController extends Controller
 
           /*if succesful then redirect to admin dashboard*/
           $admin = Admin::where('code', $request->code)->first();
-          if($admin->is_detective()){
-
-       //return redirect()->intended(route('detective.dashboard'));
-         return true;
-}
-    return redirect()->intended(route('admin.dashboard'));
-   //return  print_r($data);
-
-
+        //  if($admin->is_detective()){
+           return redirect()->intended(route('admin.dashboard'));
 
 
    }

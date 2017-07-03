@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use  Auth;
 use App\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AdminLoginController;
 
 class AdminController extends Controller
 {
@@ -23,9 +25,19 @@ class AdminController extends Controller
      */
     public function index()
     {
-        
+    //  $admin = Admin::findOrFail($userid);
 
-        return view('admin');
+        //return $admin;
+
+
+        $id = Auth::id();
+          $admin = Admin::where('id', $id)->first();
+          if($admin->is_detective()){
+
+        //return $admin ;
+        return redirect()->intended(route('detective.dashboard'));
+      }
+       return view('admin');
       }
 
 }
