@@ -2,12 +2,21 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard ='user';
+    protected $table = 'users';
+
+    public function report_crime()
+    {
+      return $this->belongsToMany(report_crime::class,'report_crime');
+    }
 
     /**
      * The attributes that are mass assignable.

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportCrimesTable extends Migration
+class CreateReportCrimeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,6 +21,7 @@ class CreateReportCrimesTable extends Migration
          $table->foreign('admin_id')->references('id')->on('admins');
          $table->date('date');
          $table->string('type');
+         $table->string('status')->nullable();
          $table->longText('crime_description');
          $table->timestamps();
         });
@@ -33,8 +34,6 @@ class CreateReportCrimesTable extends Migration
      */
     public function down()
     {
-      {
           Schema::dropIfExists('report_crime');
-      }
     }
 }
