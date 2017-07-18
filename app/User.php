@@ -13,9 +13,9 @@ class User extends Authenticatable
     protected $guard ='user';
     protected $table = 'users';
 
-    public function report_crime()
+    public function report_crimes()
     {
-      return $this->belongsToMany(report_crime::class,'report_crime');
+      return $this->belongsToMany(report_crimes::class,'report_crimes');
     }
 
     /**
