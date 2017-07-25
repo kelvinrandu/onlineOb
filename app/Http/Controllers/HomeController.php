@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('client.client_homepage');
+        return view('client.client_dashboard');
     }
 }
