@@ -13,6 +13,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL :: asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL :: asset('assets/vendor/bootstrap/css/formwizard.css') }}" rel="stylesheet">
+
+
 
     <!-- MetisMenu CSS -->
     <link href="{{ URL :: asset('assets/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
@@ -37,14 +40,29 @@
 <body>
   @yield('content')
   <div class="panel-footer">
-      <div class="input-group">
-          <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-          <span class="input-group-btn">
-              <button class="btn btn-warning btn-sm" id="btn-chat">
-                  Send
-              </button>
-          </span>
+    <div class="footer-inner">
+      <div class="footer-content">
+        <span class="bigger-120">
+          <span class="blue bolder">Online</span>
+          Ob &copy; 2017
+        </span>
+
+        &nbsp; &nbsp;
+        <span class="action-buttons">
+          <a href="#">
+            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+          </a>
+
+          <a href="#">
+            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+          </a>
+
+          <a href="#">
+            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+          </a>
+        </span>
       </div>
+    </div>
   </div>
   <!-- /.panel-footer -->
 </div>
