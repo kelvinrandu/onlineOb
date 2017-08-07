@@ -9,22 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Online OB</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL :: asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ URL :: asset('assets/vendor/bootstrap/css/formwizard.css') }}" rel="stylesheet">
-
-
+      <link href="{{ URL :: asset('assets/vendor/bootstrap/css/formwizard.css') }}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="{{ URL :: asset('assets/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ URL :: asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{ URL :: asset('assets/vendor/morrisjs/morris.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{ URL :: asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -37,62 +32,22 @@
     <![endif]-->
 
 </head>
+
 <body>
-  @yield('content')
-  <div class="panel-footer">
-    <div class="footer-inner">
-      <div class="footer-content">
-        <span class="bigger-120">
-          <span class="blue bolder">Online</span>
-          Ob &copy; 2017
-        </span>
+@yield('content')
 
-        &nbsp; &nbsp;
-        <span class="action-buttons">
-          <a href="#">
-            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-          </a>
+    <!-- jQuery -->
+    <script src="{{ URL :: asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ URL :: asset('assets/vendor/bootstrap/js/formwizard.js') }}"></script>
 
-          <a href="#">
-            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-          </a>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ URL :: asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
-          <a href="#">
-            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-          </a>
-        </span>
-      </div>
-    </div>
-  </div>
-  <!-- /.panel-footer -->
-</div>
-<!-- /.panel .chat-panel -->
-</div>
-<!-- /.col-lg-4 -->
-</div>
-<!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{ URL :: asset('assets/vendor/metisMenu/metisMenu.min.js') }}"></script>
 
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="{{ URL :: asset('assets/vendor/jquery/jquery.min.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ URL :: asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{ URL :: asset('assets/vendor/metisMenu/metisMenu.min.js') }}"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="{{ URL :: asset('assets/vendor/raphael/raphael.min.js') }}"></script>
-<script src="{{ URL :: asset('assets/vendor/morrisjs/morris.min.js') }}"></script>
-<script src="{{ URL :: asset('assets/data/morris-data.js') }}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{{ URL :: asset('assets/dist/js/sb-admin-2.js') }}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ URL :: asset('assets/dist/js/sb-admin-2.js') }}"></script>
 
 </body>
 
