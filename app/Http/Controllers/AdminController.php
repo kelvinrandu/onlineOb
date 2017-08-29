@@ -37,7 +37,7 @@ class AdminController extends Controller
         //return $admin ;
         return redirect()->intended(route('detective.dashboard'));
       }
-       return view('admin');
+       return view('admin/admin_dashboard');
       }
 
 }

@@ -14,6 +14,6 @@ class DetectiveController extends Controller
 
     public function index()
     {
-      return view('admin.detective');
+      return view('admin.detective_dashboard');
     }
 }

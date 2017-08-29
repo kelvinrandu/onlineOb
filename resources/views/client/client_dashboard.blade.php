@@ -204,48 +204,71 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-9">
 
-                    <div class="wizard">
 
-                      <form id ="msform">
-                        <!-- progressbar-->
-                        <ul id ="progressbar">
-                          <li class=active >Account</li>
-                          <li>Social Profiles</li>
-                          <li>Personal Details</li>
-                        </ul>
-                        <!--fieldsets-->
-                        <fieldset>
-                          <h2 class="fs-title">Create your account</h2>
-                          <h3 class="fs-subtitle">This is step 1</h3>
-                          <input type="text" name="email" placeholder="Email"/>
-                          <input type="password" name="pass" placeholder="password"/>
-                          <input type="password" name="cpass" placeholder="Confirm Password"/>
 
-                          <input type="button" name="next" class="next action-button"  value="Next"/>
-                        </fieldset>
-                        <fieldset>
-                          <h2 class="fs-title">Social Profiles</h2>
-                          <h3 class="fs-subtitle">Your presence on the social network</h3>
-                          <input type="text" name="twitter" placeholder="Twitter"/>
-                          <input type="text" name="facebook" placeholder="Facebook"/>
-                          <input type="text" name="gplus" placeholder="Google Plus"/>
-                          <input type="button" name="previous" class="previous action-button"  value="Previous"/>
-                          <input type="button" name="next" class="next action-button"  value="Next"/>
-                        </fieldset>
-                        <fieldset>
-                          <h2 class="fs-title">Personal Details</h2>
-                          <h3 class="fs-subtitle">We will never sell it</h3>
-                          <input type="text" name="fname" placeholder="First Name"/>
-                          <input type="text" name="lname" placeholder="Last Name"/>
-                          <input type="text" name="phone" placeholder="Phone"/>
-                          <textarea name="address" placeholder="Address"/></textarea>
-                          <input type="button" name="previous" class="previous action-button"  value="Previous"/>
-                          <input type="submit" name="submit" class="submit action-button"  value="Submit"/>
-                        </fieldset>
-                      </form>
+                    <div class="container">
+                    <div class="stepwizard">
+                        <div class="stepwizard-row setup-panel">
+                            <div class="stepwizard-step">
+                                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                                <p>Step 1</p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                                <p>Step 2</p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                                <p>Step 3</p>
+                            </div>
+                        </div>
                     </div>
+                    <form role="form">
+                        <div class="row setup-content" id="step-1">
+                            <div class="col-xs-10">
+                                <div class="col-md-10">
+                                    <h3> Step 1</h3>
+                                    <div class="form-group">
+                                        <label class="control-label">Location</label>
+                                        <input   type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Type</label>
+                                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                                    </div>
+                                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row setup-content" id="step-2">
+                            <div class="col-xs-10">
+                                <div class="col-md-10">
+                                    <h3> Step 2</h3>
+                                    <div class="form-group">
+                                        <label class="control-label">Date</label>
+                                        <input maxlength="100" type="datepicker" required="required" class="form-control" placeholder="Enter Company Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Company Address</label>
+                                        <input  type="textarea" required="required" class="form-control" placeholder="Enter Company Address"  />
+                                    </div>
+                                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row setup-content" id="step-3">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <h3> Step 3</h3>
+                                    <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
