@@ -136,7 +136,7 @@
             </li>
             <!-- /.dropdown -->
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{{ isset(Auth::user()->fname) ? Auth::user()->fname : Auth::user()->email }}}
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{{ isset(Auth::user()->lName) ? Auth::user()->lName : Auth::user()->email }}}
                     </i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
@@ -206,8 +206,22 @@
             <div class="row">
                 <div class="col-lg-9">
 
+                  {!! Form::model($car, ['action' => 'CarController@store']) !!}
 
+                      <div class="form-group">
+                        {!! Form::label('make', 'Make') !!}
+                        {!! Form::text('make', '', ['class' => 'form-control']) !!}
+                      </div>
 
+                      <div class="form-group">
+                        {!! Form::label('model', 'Model') !!}
+                        {!! Form::text('model', '', ['class' => 'form-control']) !!}
+                      </div>
+
+                      <button class="btn btn-success" type="submit">Add the Car!</button>
+
+                    {!! Form::close() !!}
+<!--
                     <div class="container">
                     <div class="stepwizard">
                         <div class="stepwizard-row setup-panel">
@@ -267,7 +281,8 @@
                             </div>
                         </div>
                     </form>
-                    </div>
+                    </div> -->
+
 
                 </div>
                 <!-- /.col-lg-12 -->
