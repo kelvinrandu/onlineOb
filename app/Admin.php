@@ -11,12 +11,21 @@ class Admin extends Authenticatable
     use Notifiable;
 
     protected $guard ='admin';
-    protected $table = 'admins';
+    public $table = 'admins';
 
-    public function roles()
-    {
-      return $this->belongsToMany(roles::class,'role_admins');
-    }
+  
+    public function report_crimes()
+  {
+      return $this->hasMany('App\Report_crime');
+  }
+  public function statements()
+{
+    return $this->hasMany('App\Statement');
+}
+public function contact()
+{
+  return $this->belongsTo('App\Contact');
+}
 
     /**
      * The attributes that are mass assignable.

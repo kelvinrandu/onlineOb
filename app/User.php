@@ -13,10 +13,11 @@ class User extends Authenticatable
     protected $guard ='user';
     protected $table = 'users';
 
+
     public function report_crimes()
-    {
-      return $this->belongsToMany(report_crimes::class,'report_crimes');
-    }
+  {                  
+      return $this->hasMany('App\Report_crime');
+  }
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fName',  'lName','phonenumber', 'email', 'idNo','password',
+        'fName',  'lName', 'email', 'avatar','gender','password',
     ];
 
     /**

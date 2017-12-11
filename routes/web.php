@@ -19,19 +19,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home.dashboard');
-//client
-Route::prefix('user')->group(function(){
-  Route::post('/crime', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-  Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::post('/crime', 'UserController@create')->name('crime');
+Route::get('/sent', 'UserController@success')->name('success.post');
+Route::get('/post-crime', 'UserController@index')->name('crime');
+Route::get('/request', 'UserController@get_index')->name('get.request');
 
-  Route::get('/', 'AdminController@index')->name('admin.dashboard');
-  Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
-});
+//
+// Route::get('/', 'AdminController@index')->name('admin.dashboard');
+// Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
+
+
 
 Route::prefix('admin')->group(function(){
   Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+  Route::get('/request', 'AdminController@get_requests')->name('admin.get.request');
+  Route::get('/request/{id}', 'AdminController@get_request')->name('admin.get.requests');
+  // Route::get('/statements', 'AdminController@get_statements')->name('detective.get.statements');
+  Route::post('/make/statement', 'AdminController@create')->name('admin.create.statements');
 
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
+    Route::get('/detective/statements/{id}', 'DetectiveController@get_index')->name('detective.get.statement');
+    Route::post('/detective/statements', 'DetectiveController@get_index')->name('detective.post.statement');
 });

@@ -1,4 +1,4 @@
-body{ 
+body{
     /*margin-top:10px; */
 }
 
@@ -8,6 +8,9 @@ body{
 
 .stepwizard-row {
     display: table-row;
+
+
+
 }
 
 .stepwizard {

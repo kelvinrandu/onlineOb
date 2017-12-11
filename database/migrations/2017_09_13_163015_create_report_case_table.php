@@ -20,8 +20,10 @@ class CreateReportCaseTable extends Migration
          $table->integer('admin_id')->unsigned();
          $table->foreign('admin_id')->references('id')->on('admins');
          $table->date('date');
+         $table->string('phonenumber');
+         $table->integer('idNo');
          $table->integer('type_id')->unsigned();
-		 $table->foreign('type_id')->references('id')->on('type');
+		     $table->foreign('type_id')->references('id')->on('type');
          $table->string('status')->nullable();
          $table->longText('crime_description');
          $table->timestamps();

@@ -20,6 +20,7 @@ public function up()
 			$table->integer('admin_id')->unsigned();
 			$table->foreign('admin_id')->references('id')->on('admins');
 			$table->string('ob_number');
+      $table->integer('status');
 			$table->string('police_number');
 			$table->string('statement');
             $table->timestamps();
@@ -36,4 +37,3 @@ public function up()
         Schema::dropIfExists('statements');
     }
 }
-

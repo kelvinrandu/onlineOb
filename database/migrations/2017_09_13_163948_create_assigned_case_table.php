@@ -22,8 +22,6 @@ class CreateAssignedCaseTable extends Migration
 			$table->foreign('statement_id')->references('id')->on('statements');
 			$table->integer('admin_id')->unsigned();
 			$table->foreign('admin_id')->references('id')->on('admins');
-			$table->integer('contact_id')->unsigned();
-			$table->foreign('contact_id')->references('id')->on('contacts');
             $table->timestamps();
         });
     }
