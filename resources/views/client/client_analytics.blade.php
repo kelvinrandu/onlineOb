@@ -17,7 +17,7 @@
                   <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                      <li class="nav-item start active open">
+                      <li class="nav-item ">
                           <a href="javascript:;" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
@@ -34,7 +34,7 @@
                           </a>
 
                       </li>
-                      <li class="nav-item  ">
+                      <li class="nav-item start active open ">
                           <a href="#" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Analytics</span>
@@ -61,8 +61,8 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> Station analytics
-                      <small>Familiarize yourself with stations around you</small>
+                  <h1 class="page-title"> Crime analytics
+                      <small>View crime rate around you</small>
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">

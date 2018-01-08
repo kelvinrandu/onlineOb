@@ -25,6 +25,22 @@
                         </a>
 
                     </li>
+                    <li class="nav-item start active open ">
+                        <a href="{{ route('get.request') }}" class="nav-link nav-toggle">
+                            <i class="icon-pencil"></i>
+                            <span class="title">Record statement</span>
+                            <span class="arrow"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Analytics</span>
+                            <span class="arrow"></span>
+                        </a>
+
+                    </li>
 
                     <!-- <li class="nav-item  active open">
                         <a href="javascript:;" class="nav-link nav-toggle">

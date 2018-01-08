@@ -12,5 +12,9 @@ class Contact extends Model
   protected $fillable = [
     'Fname',  'Lname','phone','email','rank','admin_id', 'type_id',
   ];
+  public function cases()
+{
+  return $this->belongsToMany('App\Court_case', 'case_contacts');
+}
 
 }

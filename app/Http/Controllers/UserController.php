@@ -6,7 +6,10 @@ use App\Report_crime;
 use App\Type;
 use App\Admin;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Session;
+use Charts;
 
 
 
@@ -34,9 +37,12 @@ class UserController extends Controller
 
   }
 
-  public function create()
+  public function create(Request $request)
   {
-
+    //validate the id number against the name
+    $this->validate($request,[
+      'name' => 'bail|max:50|string|unique:startups|required',
+    ]);
     Report_crime::create(array(
         'user_id'=>Auth::user()->id,
         'admin_id'=>Input::get('country'),

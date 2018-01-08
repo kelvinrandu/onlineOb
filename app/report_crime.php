@@ -15,6 +15,10 @@ class Report_crime extends Model
   {
       return $this->belongsTo('App\User','user_id');
   }
+  public function type()
+  {
+      return $this->belongsTo('App\Type','type_id');
+  }
   public function admin()
   {
       return $this->belongsTo('App\Admin','admin_id');

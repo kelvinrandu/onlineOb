@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 use  Auth;
 use App\Admin;
 use App\User;
+use App\Type;
 use App\Statement;
 use App\Report_crime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Input;
+use Session;
+use Charts;
 
 class AdminController extends Controller
 {
@@ -44,10 +47,11 @@ class AdminController extends Controller
    return redirect()->intended(route('detective.dashboard'));
 
       }
-
-      $request = DB::table('report_crimes')->where('status',0)
+      Report_crime::with('user')->where('id',$id)->get();
+      $request = Report_crime::with('type')->where('status',0)
       ->where('admin_id', $id)
       ->get();
+
        return view('admin/admin_dashboard',array('request' => $request ));
       }
 
@@ -80,10 +84,10 @@ class AdminController extends Controller
       }
       public function create()
       {
-             $id = Auth::id();
+              $id = Auth::id();
              $crime_id=Input::get('crime_id');
         Statement::create(array(
-            'user_id'=>Input::get('user_id'),
+            'crime_id'=>$crime_id,
             'admin_id'=>Input::get('admin_id'),
             'ob_number'=>Input::get('ob_number'),
             'date'=>Input::get('date'),
@@ -104,6 +108,7 @@ class AdminController extends Controller
                 }
 
                 return redirect()->back()->with('message','Statement not recorded please try again');
+
 
       }
 

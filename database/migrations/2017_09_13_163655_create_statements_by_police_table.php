@@ -15,8 +15,8 @@ public function up()
     {
 		Schema::create('statements', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->integer('crime_id')->unsigned();
+			$table->foreign('crime_id')->references('id')->on('report_crimes');
 			$table->integer('admin_id')->unsigned();
 			$table->foreign('admin_id')->references('id')->on('admins');
 			$table->string('ob_number');

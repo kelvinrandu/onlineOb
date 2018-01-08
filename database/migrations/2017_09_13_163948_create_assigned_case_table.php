@@ -13,7 +13,7 @@ class CreateAssignedCaseTable extends Migration
      */
      public function up()
     {
-         Schema::create('cases', function (Blueprint $table) {
+         Schema::create('court_cases', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('statement');
 			$table->integer('report_crimes_id')->unsigned();

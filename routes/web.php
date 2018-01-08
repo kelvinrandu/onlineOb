@@ -41,5 +41,5 @@ Route::prefix('admin')->group(function(){
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
     Route::get('/detective/statements/{id}', 'DetectiveController@get_index')->name('detective.get.statement');
-    Route::post('/detective/statements', 'DetectiveController@get_index')->name('detective.post.statement');
+    Route::post('/detective/make/case', 'DetectiveController@create')->name('detective.post.case');
 });

@@ -13,7 +13,7 @@ class Admin extends Authenticatable
     protected $guard ='admin';
     public $table = 'admins';
 
-  
+
     public function report_crimes()
   {
       return $this->hasMany('App\Report_crime');

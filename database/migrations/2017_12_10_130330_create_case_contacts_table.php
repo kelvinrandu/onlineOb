@@ -15,8 +15,8 @@ class CreateCaseContactsTable extends Migration
     {
         Schema::create('case_contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('case_id')->unsigned();
-            $table->foreign('case_id')->references('id')->on('cases');
+            $table->integer('court_case_id')->unsigned();
+            $table->foreign('court_case_id')->references('id')->on('court_cases');
             $table->integer('contact_id')->unsigned();
             $table->foreign('contact_id')->references('id')->on('contacts');
             $table->timestamps();

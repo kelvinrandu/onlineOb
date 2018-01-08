@@ -15,6 +15,6 @@ class Statement extends Model
 
 
     protected $fillable = [
-        'user_id',  'admin_id','ob_number','police_number','status','statement',
+        'crime_id',  'admin_id','ob_number','police_number','status','statement',
     ];
 }

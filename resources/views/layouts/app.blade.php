@@ -131,52 +131,68 @@
                                    <i class="icon-bell"></i>
                             <span class="badge badge-default"> <?php echo count($request); ?></span>
                                </a>
-
+                                @if ((Auth::user()->status)==0)
                                 <ul class="dropdown-menu">
                                     <li class="external">
                                         <h3>
                                             <span class="bold">  <?php echo count($request); ?></span> notifications</h3>
                                         <a href="page_user_profile_1.html">view all</a>
                                     </li>
-                                         @if (count(Auth::user()->status)==0)
+
                                          <li>
                                              <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
                                                   @foreach ($request as $row)
                                                  <li>
-                                                     <a href="{{ route('detective.get.statement',$row->id) }}">
-                                                         <span class="time">just now</span>
+                                                     <a href="{{ route('admin.get.requests',$row->id) }}">
+                                                           <?php $time=$row->created_at->diffForHumans(); ?>
+                                                         <span class="time"><?php echo $time ; ?></span>
                                                          <span class="details">
                                                              <!-- <span class="label label-sm label-icon label-success"> -->
 
                                                              <!-- </span> -->
-                                                             {{$row->created_at}}</span>
+                                                             {{$row->type->name}}</span>
                                                      </a>
                                                  </li>
                                                    @endforeach
                                              </ul>
                                          </li>
-                                         @else
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                             @foreach ($request as $row)
-                                            <li>
-                                                <a href="{{ route('detective.get.statement',$row->id) }}">
-                                                    <span class="time">just now</span>
-                                                    <span class="details">
-                                                        <!-- <span class="label label-sm label-icon label-success"> -->
 
-                                                        <!-- </span> -->
-                                                        {{$row->ob_number}}</span>
-                                                </a>
-                                            </li>
-                                              @endforeach
-                                        </ul>
+
+
+                                </ul>
+                                @else
+                                <ul class="dropdown-menu">
+                                    <li class="external">
+                                        <h3>
+                                            <span class="bold">  <?php echo count($request); ?></span> notifications</h3>
+                                        <a href="page_user_profile_1.html">view all</a>
                                     </li>
-                                    @endif
+
+                                         <li>
+                                             <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                                  @foreach ($request as $row)
+                                                 <li>
+                                                     <a href="{{ route('detective.get.statement',$row->id) }}">
+                                                       <?php  $time=$row->created_at ?>
+
+
+                                                         <span class="time"><?php  echo Carbon\Carbon::parse($time)->diffForHumans(); ?></span>
+                                                         <span class="details">
+                                                             <!-- <span class="label label-sm label-icon label-success"> -->
+
+                                                             <!-- </span> -->
+                                                             {{$row->ob_number}}</span>
+                                                     </a>
+                                                 </li>
+                                                   @endforeach
+                                             </ul>
+                                         </li>
+
+
 
                                 </ul>
 
-
+  @endif
 
                                @endif
                            </li>
