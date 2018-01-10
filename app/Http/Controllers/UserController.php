@@ -18,7 +18,13 @@ class UserController extends Controller
 {
   public function index()
   {
-      return view('client/client_dashboard');
+    $chart = Charts::create('line','highcharts')
+              ->setTitle('my nice chart')
+              ->setlabels(['First','Second','Third'])
+              ->setValues([5,10,20])
+              ->setDimensions(1000,500)
+              ->setTitle('my nice chart');
+      return view('client/client_dashboard',['chart'=>$chart]);
   }
   public function success()
   {
@@ -41,7 +47,7 @@ class UserController extends Controller
   {
     //validate the id number against the name
     $this->validate($request,[
-      'name' => 'bail|max:50|string|unique:startups|required',
+      // 'name' => '',
     ]);
     Report_crime::create(array(
         'user_id'=>Auth::user()->id,

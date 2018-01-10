@@ -76,12 +76,16 @@ class AdminController extends Controller
       //get statements
       public function get_statements()
       {
+          $id = Auth::id();
+         $requests= DB::table('report_crimes')->where('admin_id',$id)->get();
+         $request = Report_crime::with('type')->where('status',0)
+         ->where('admin_id', $id)
+         ->get();
 
-        // $request= DB::table('report_crimes')->where('id',1)->get();
-
-         return view('admin/detective_view_request');
+         return view('admin/admin_view_requests'[array('request' => $request ),array('requests' => $requests )]);
 
       }
+      //create statement
       public function create()
       {
               $id = Auth::id();

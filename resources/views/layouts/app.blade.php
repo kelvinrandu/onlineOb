@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+        {!! Charts::assets() !!}
 
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,6 +44,7 @@
         <link href="{{asset('layout_assets/layouts/layout2/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+
 
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">

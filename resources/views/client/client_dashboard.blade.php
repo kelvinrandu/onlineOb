@@ -103,14 +103,16 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
-
+   {!! $chart->render() !!}
               </div>
               <!-- END CONTENT BODY -->
-          </div>
-          <!-- END CONTENT -->
-          <!-- BEGIN QUICK SIDEBAR -->
 
-          <!-- END QUICK SIDEBAR -->
+          </div>
+
+
+
+
+
       </div>
       <!-- END CONTAINER -->
       <!-- BEGIN FOOTER -->

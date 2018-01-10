@@ -27,23 +27,24 @@ class DetectiveController extends Controller
 //load the detective dashboard
     public function index()
     {
-     $id = Auth::id();
-      $request = DB::table('statements')->where('status',0)
-      ->where('admin_id', $id)
-      ->get();
+       $id = Auth::id();
+       $request = DB::table('statements')->where('status',0)
+       ->where('admin_id', $id)
+       ->get();
+
       return view('admin.detective_dashboard',array('request' => $request ));
     }
 //fetch the selected statement
     public function get_index($id)
     {
-      $me = Auth::id();
-     $request =Report_crime::all();
-     $detective = DB::table('contacts')->where('admin_id',$me)
-     ->get();
-     $statement = DB::table('statements')->where('id',$id)
-     ->get();
+         $me = Auth::id();
+         $request =Report_crime::all();
+         $detective = DB::table('contacts')->where('admin_id',$me)
+         ->get();
+         $statement = DB::table('statements')->where('id',$id)
+         ->get();
 
-    return view('admin.detective_view_requests',['request' => $request, 'detective' => $detective ,'statement' => $statement ]);
+       return view('admin.detective_view_requests',['request' => $request, 'detective' => $detective ,'statement' => $statement ]);
 
     }
 
@@ -56,7 +57,7 @@ class DetectiveController extends Controller
            $statement_id=Input::get('statement_id');
 
            //creates an instance of a case and returns it for use in updating pivot table
-     $recent_entry =Court_case::create(array(
+          $recent_entry =Court_case::create(array(
 
           'admin_id'=>$id ,
           'statement_id'=>$statement_id,
@@ -65,13 +66,13 @@ class DetectiveController extends Controller
 
       ));
 
-      // on create case updates the statement to read
+              // on create case updates the statement to read
                 $statement = Statement::find($statement_id);
                 if($statement){
                   $statement->status =1;
                   $statement->save();
 
-// on create updates the report crime to received
+                // on create updates the report crime to received
                   $crime = Report_crime::find($crime_id);
                    if($crime){
                      $crime->status =2;
@@ -88,14 +89,14 @@ class DetectiveController extends Controller
                             $present->contacts()->attach(['contact_id'=>Input::get('contact_id')]);
 
                            }
-    //if succesfull the redirects to homepage
+                    //if succesfull the redirects to homepage
                      return redirect()->route('admin.dashboard')->with('message','Statement recorded  succesfully');
 
                }
 
                   }
-// if operation unsuccessfull then redirect back
-              return redirect()->back()->with('message','Statement not recorded please try again');
+                   // if operation unsuccessfull then redirect back
+                    return redirect()->back()->with('message','Statement not recorded please try again');
 
     }
 
