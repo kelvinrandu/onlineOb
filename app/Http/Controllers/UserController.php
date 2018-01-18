@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 use  Auth;
 use App\Report_crime;
 use App\Type;
+use App\Notifications\RequestReceived;
 use App\Admin;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use Session;
+use Notification;
 use Charts;
 
 
@@ -16,19 +20,61 @@ use Charts;
 
 class UserController extends Controller
 {
+  //fetches the index page
   public function index()
   {
-    $chart = Charts::create('line','highcharts')
-              ->setTitle('my nice chart')
-              ->setlabels(['First','Second','Third'])
-              ->setValues([5,10,20])
-              ->setDimensions(1000,500)
-              ->setTitle('my nice chart');
-      return view('client/client_dashboard',['chart'=>$chart]);
+           $labels = Report_crime::with('admin')->get();
+           $admin= DB::table('admins')->where('status',1)->get();
+  //  $admin = Admin::with('type')->where('status',1)
+  //  ->get();
+             $chart = Charts::database($labels,'bar','highcharts')
+               ->title('Crime rate in Nairobi')
+               ->groupBy('admin_id')
+                ->elementLabel('Number of reported crimes')
+               // ->values([5,10,20,15,30])
+              ->dimensions(1000,500)
+              ->responsive(false);
+
+     return view('client/client_dashboard',['chart'=>$chart,'admin'=>$admin]);
   }
+  //fetches the success page
   public function success()
   {
       return view('client/client_sent_request');
+  }
+  //fetches the analytics page
+  public function analytics()
+  {
+    $labels = Report_crime::with('admin')->get();
+           $admin= DB::table('admins')->where('status',1)->get();
+  //  $admin = Admin::with('type')->where('status',1)
+  //  ->get();
+    $chart = Charts::database($labels,'bar','highcharts')
+               ->title('Crime rate in Nairobi')
+               ->groupBy('admin_id')
+                ->elementLabel('Number of reported crimes')
+               // ->values([5,10,20,15,30])
+              ->dimensions(1000,500)
+              ->responsive(false);
+
+     return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
+  }
+  //fetches the each station  info page
+  public function each_station($id)
+  {
+           $labels = Report_crime::with('admin')->get();
+           $admin= DB::table('admins')->where('id',$id)->get();
+  //  $admin = Admin::with('type')->where('status',1)
+  //  ->get();
+    $chart = Charts::database($labels,'bar','highcharts')
+               ->title('Crime rate in Nairobi')
+               ->groupBy('admin_id')
+                ->elementLabel('Number of reported crimes')
+               // ->values([5,10,20,15,30])
+              ->dimensions(1000,500)
+              ->responsive(false);
+
+     return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
   }
 
   public function get_index()
@@ -45,12 +91,13 @@ class UserController extends Controller
 
   public function create(Request $request)
   {
+    $user_id= Auth::user()->id;
     //validate the id number against the name
     $this->validate($request,[
-      // 'name' => '',
+      'phone' => 'required|exists:identifications,id_number'
     ]);
     Report_crime::create(array(
-        'user_id'=>Auth::user()->id,
+        'user_id'=>$user_id,
         'admin_id'=>Input::get('country'),
         'phonenumber'=>Input::get('city'),
         'idNo'=>Input::get('phone'),
@@ -61,7 +108,8 @@ class UserController extends Controller
 
     ));
   // dd(Input::all() );
-
+  $user = User::find($user_id);
+  $user->notify(new RequestReceived() );
 
       return redirect()->route('home.dashboard')->with('message','Request posted succesfull');
   }

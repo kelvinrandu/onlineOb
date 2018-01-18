@@ -103,7 +103,14 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
-   {!! $chart->render() !!}
+   <!-- {!! $chart->render() !!} -->
+     @foreach ($admin as $row)
+       <a href="#" >
+   <div class="alert alert-success">
+
+       <strong><div class="pull right">{{$row->station_name}}</div></strong>  </div>
+           </a>
+         @endforeach
               </div>
               <!-- END CONTENT BODY -->
 

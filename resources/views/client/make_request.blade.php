@@ -835,6 +835,15 @@
                 <!-- END PAGE HEADER-->
                 <div class="row">
                     <div class="col-md-12">
+                      @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                         <!-- <div class="m-heading-1 border-green m-bordered">
                             <h3>Twitter Bootstrap Wizard Plugin</h3>
                             <p> This twitter bootstrap plugin builds a wizard out of a formatter tabbable structure. It allows to build a wizard functionality using buttons to go through the different wizard steps and using events allows to hook into

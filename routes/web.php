@@ -23,6 +23,8 @@ Route::post('/crime', 'UserController@create')->name('crime');
 Route::get('/sent', 'UserController@success')->name('success.post');
 Route::get('/post-crime', 'UserController@index')->name('crime');
 Route::get('/request', 'UserController@get_index')->name('get.request');
+Route::get('/analytics', 'UserController@analytics')->name('get.analytics');
+Route::get('/station/{id}/analytics', 'UserController@each_station')->name('get.each.station');
 
 //
 // Route::get('/', 'AdminController@index')->name('admin.dashboard');
