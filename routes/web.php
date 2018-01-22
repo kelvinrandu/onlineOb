@@ -40,8 +40,11 @@ Route::prefix('admin')->group(function(){
   // Route::get('/statements', 'AdminController@get_statements')->name('detective.get.statements');
   Route::post('/make/statement', 'AdminController@create')->name('admin.create.statements');
 
+  Route::post('/add/detective', 'DetectiveController@create_detective')->name('detective.add.detective');
+  Route::get('/add/detective', 'DetectiveController@get_detective')->name('detective.get.detective');
+
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
-    Route::get('/detective/statements/{id}', 'DetectiveController@get_index')->name('detective.get.statement');
-    Route::post('/detective/make/case', 'DetectiveController@create')->name('detective.post.case');
+  Route::get('/detective/statements/{id}', 'DetectiveController@get_index')->name('detective.get.statement');
+  Route::post('/detective/make/case', 'DetectiveController@create')->name('detective.post.case');
 });

@@ -49,7 +49,7 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('detective.get.detective') }}" class="nav-link nav-toggle">
                               <i class="icon-users"></i>
                               <span class="title">Add detective</span>
                               <span class="arrow"></span>

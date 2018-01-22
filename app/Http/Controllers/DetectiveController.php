@@ -6,8 +6,9 @@ use  Auth;
 use App\Court_case;
 use App\Admin;
 use App\User;
+use App\Type;
 use App\Statement;
-use App\Contacts;
+use App\Contact;
 use App\Report_crime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -58,7 +59,6 @@ class DetectiveController extends Controller
 
            //creates an instance of a case and returns it for use in updating pivot table
           $recent_entry =Court_case::create(array(
-
           'admin_id'=>$id ,
           'statement_id'=>$statement_id,
           'report_crimes_id'=>$crime_id,
@@ -118,20 +118,31 @@ class DetectiveController extends Controller
        return redirect()->route('admin.dashboard')->with('message','Station created  succesfully');
 
     }
+    public function get_detective()
+    {
+       $id = Auth::id();
+       $request = DB::table('statements')->where('status',0)
+       ->where('admin_id', $id)
+       ->get();
+       $type = Type::all();
+
+      return view('admin.add-detective',array('request' => $request ),array('type' => $type ));
+    }
 
 // adds new detective
     public function create_detective()
     {
             $id = Auth::id();
-           $crime_id=Input::get('crime_id');
-      Admin::create(array(
-          'crime_id'=>$crime_id,
-          'admin_id'=>Input::get('admin_id'),
-          'ob_number'=>Input::get('ob_number'),
-          'date'=>Input::get('date'),
-          'status'=> 0,
-          'police_number'=>Input::get('police_number'),
-          'statement'=>Input::get('statement')
+
+      Contact::create(array(
+        'Fname'=> Input::get('Fname'),
+        'lname'=> Input::get('lname'),
+        'email'=> Input::get('email'),
+        'type_id'=>Input::get('type_id'),
+        'admin_id'=>$id,
+        'phone'=>Input::get('phone'),
+        'rank'=>Input::get('rank'),
+
 
       ));
        return redirect()->route('admin.dashboard')->with('message','Detective added  succesfully');

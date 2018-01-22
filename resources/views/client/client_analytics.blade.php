@@ -18,7 +18,7 @@
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                       <li class="nav-item start active open">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('home.dashboard') }}" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
                               <span class="selected"></span>
@@ -34,8 +34,8 @@
                           </a>
 
                       </li>
-                      <li class="nav-item  ">
-                          <a href="#" class="nav-link nav-toggle">
+                      <li class="nav-item  start active open">
+                          <a href="{{ route('get.analytics') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Analytics</span>
                               <span class="arrow"></span>
@@ -102,8 +102,15 @@
                           </div>
                       </div>
                   </div>
+                  <div class="container-fluid">
+                    <div class="row">
+                                                      <div class="col-md-4">
                   <!-- END PAGE HEADER-->
    {!! $chart->render() !!}
+         </div>
+      </div>
+   </div>
+
               </div>
               <!-- END CONTENT BODY -->
 

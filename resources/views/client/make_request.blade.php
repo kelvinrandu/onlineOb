@@ -34,7 +34,7 @@
 
                     </li>
                     <li class="nav-item  ">
-                        <a href="#" class="nav-link nav-toggle">
+                        <a href="{{ route('get.analytics') }}" class="nav-link nav-toggle">
                             <i class="icon-bar-chart"></i>
                             <span class="title">Analytics</span>
                             <span class="arrow"></span>

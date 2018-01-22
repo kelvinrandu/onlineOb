@@ -7,6 +7,7 @@ use App\Type;
 use App\Notifications\RequestReceived;
 use App\Admin;
 use App\User;
+use App\Station_contact;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -25,18 +26,18 @@ class UserController extends Controller
   {
            $labels = Report_crime::with('admin')->get();
            $admin= DB::table('admins')->where('status',1)->get();
-  //  $admin = Admin::with('type')->where('status',1)
-  //  ->get();
+
              $chart = Charts::database($labels,'bar','highcharts')
                ->title('Crime rate in Nairobi')
                ->groupBy('admin_id')
-                ->elementLabel('Number of reported crimes')
+               ->elementLabel('Number of reported crimes')
                // ->values([5,10,20,15,30])
-              ->dimensions(1000,500)
+              ->dimensions(800,500)
               ->responsive(false);
 
      return view('client/client_dashboard',['chart'=>$chart,'admin'=>$admin]);
   }
+
   //fetches the success page
   public function success()
   {
@@ -45,11 +46,10 @@ class UserController extends Controller
   //fetches the analytics page
   public function analytics()
   {
-    $labels = Report_crime::with('admin')->get();
+           $labels = Report_crime::with('admin')->get();
            $admin= DB::table('admins')->where('status',1)->get();
-  //  $admin = Admin::with('type')->where('status',1)
-  //  ->get();
-    $chart = Charts::database($labels,'bar','highcharts')
+
+           $chart = Charts::database($labels,'bar','highcharts')
                ->title('Crime rate in Nairobi')
                ->groupBy('admin_id')
                 ->elementLabel('Number of reported crimes')
@@ -63,10 +63,10 @@ class UserController extends Controller
   public function each_station($id)
   {
            $labels = Report_crime::with('admin')->get();
-           $admin= DB::table('admins')->where('id',$id)->get();
-  //  $admin = Admin::with('type')->where('status',1)
-  //  ->get();
-    $chart = Charts::database($labels,'bar','highcharts')
+           $admin= Station_contact::with('admin')->where('admin_id',$id)->get();
+
+
+           $chart = Charts::database($labels,'bar','highcharts')
                ->title('Crime rate in Nairobi')
                ->groupBy('admin_id')
                 ->elementLabel('Number of reported crimes')
@@ -74,7 +74,7 @@ class UserController extends Controller
               ->dimensions(1000,500)
               ->responsive(false);
 
-     return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
+     return view('client/client-each-station',['chart'=>$chart,'admin'=>$admin]);
   }
 
   public function get_index()

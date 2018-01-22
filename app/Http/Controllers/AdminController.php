@@ -82,7 +82,7 @@ class AdminController extends Controller
          ->where('admin_id', $id)
          ->get();
 
-         return view('admin/admin_view_requests'[array('request' => $request ),array('requests' => $requests )]);
+         return view('admin/admin_view_requests',array('request' => $request ),array('requests' => $requests ));
 
       }
       //create statement

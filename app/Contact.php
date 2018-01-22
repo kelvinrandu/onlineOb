@@ -10,7 +10,7 @@ class Contact extends Model
   protected $table = 'contacts';
 
   protected $fillable = [
-    'Fname',  'Lname','phone','email','rank','admin_id', 'type_id',
+    'Fname',  'lname','phone','email','rank','admin_id', 'type_id',
   ];
   public function cases()
 {
