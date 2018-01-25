@@ -68,7 +68,7 @@
                       <ul class="page-breadcrumb">
                           <li>
                               <i class="icon-home"></i>
-                              <a href="index.html">Home</a>
+                              <a href="{{ route('home.dashboard') }}">Home</a>
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
@@ -103,9 +103,9 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
-   <!-- {!! $chart->render() !!} -->
+
      @foreach ($admin as $row)
-       <a href="{{ route('get.each.station',$row->id) }}" >
+       <a href="{{ route('get.preference',$row->id) }}" >
    <div class="alert alert-success">
 
        <strong><div class="pull right">{{$row->station_name}}</div></strong>  </div>

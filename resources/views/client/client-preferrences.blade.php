@@ -61,8 +61,8 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> Station analytics
-                      <small>Familiarize yourself with stations around you</small>
+                  <h1 class="page-title"> {{$admin}}
+                      <small>station analysis</small>
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">
@@ -72,7 +72,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>view crime</span>
+                              <span>view preference</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">
@@ -105,9 +105,14 @@
 
                   <!-- END PAGE HEADER-->
 
-   {!! $chart->render() !!}  @foreach ($type as $row)
-       {{$row->id}}:{{$row->name}}<br/>
-     @endforeach
+                    <a href="{{ route('get.today',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">Todays crime</div></strong>  </div></a>
+                    <a href="{{ route('get.each.station',$admin_id) }}" > <div class="alert alert-success"> <strong><div class="pull right">Most Frequent crime</div></strong>  </div></a>
+                    <a href="{{ route('get.trend',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">crime trend</div></strong>  </div></a>
+                    <a href="{{ route('get.contact',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">contacts</div></strong>  </div></a>
+
+
+
+
               </div>
               <!-- END CONTENT BODY -->
 

@@ -30,20 +30,13 @@ class HomeController extends Controller
     public function index()
     {
       $labels = Report_crime::with('admin')->get();
-             $admin= DB::table('admins')->where('status',1)->get();
+             $admin= DB::table('admins')->where('status',0)->get();
     //  $admin = Admin::with('type')->where('status',1)
     //  ->get();
 
 
-      $chart = Charts::database($labels,'bar','highcharts')
-                 ->title('Crime rate in Nairobi')
-                 ->groupBy('admin_id')
-                  ->elementLabel('Number of reported crimes')
-                 // ->values([5,10,20,15,30])
-                ->dimensions(1000,500)
-                ->responsive(false);
 
-       return view('client/client_dashboard',['chart'=>$chart,'admin'=>$admin]);
+       return view('client/client_dashboard',['admin'=>$admin]);
         // return count($labels);
     }
 }

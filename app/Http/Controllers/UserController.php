@@ -25,15 +25,8 @@ class UserController extends Controller
   public function index()
   {
            $labels = Report_crime::with('admin')->get();
-           $admin= DB::table('admins')->where('status',1)->get();
+           $admin= DB::table('admins')->where('status',0)->get();
 
-             $chart = Charts::database($labels,'bar','highcharts')
-               ->title('Crime rate in Nairobi')
-               ->groupBy('admin_id')
-               ->elementLabel('Number of reported crimes')
-               // ->values([5,10,20,15,30])
-              ->dimensions(800,500)
-              ->responsive(false);
 
      return view('client/client_dashboard',['chart'=>$chart,'admin'=>$admin]);
   }
@@ -47,7 +40,7 @@ class UserController extends Controller
   public function analytics()
   {
            $labels = Report_crime::with('admin')->get();
-           $admin= DB::table('admins')->where('status',1)->get();
+           $admin= DB::table('admins')->where('status',0)->get();
 
            $chart = Charts::database($labels,'bar','highcharts')
                ->title('Crime rate in Nairobi')
@@ -59,22 +52,79 @@ class UserController extends Controller
 
      return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
   }
+  //fetches  preferences
+  public function preference($id)
+  {
+
+      $admin_id=$id;
+      $admin= DB::table('admins')->where('id',$admin_id)->get();
+      $admin_name=$admin[0]->station_name;
+
+
+
+   return view('client/client-preferrences',['admin_id'=>$admin_id,'admin'=>$admin_name]);
+
+
+
+
+  }
   //fetches the each station  info page
   public function each_station($id)
   {
-           $labels = Report_crime::with('admin')->get();
+           $labels = Report_crime::with('admin')->where('admin_id',$id)->get();
+           $type = Type::all();
            $admin= Station_contact::with('admin')->where('admin_id',$id)->get();
 
 
-           $chart = Charts::database($labels,'bar','highcharts')
-               ->title('Crime rate in Nairobi')
-               ->groupBy('admin_id')
-                ->elementLabel('Number of reported crimes')
+
+           $chart = Charts::database($labels ,'bar','highcharts')
+               ->title('Crime rate ')
+               ->groupBy('type_id')
+                ->elementLabel('frequency of the crime')
                // ->values([5,10,20,15,30])
               ->dimensions(1000,500)
               ->responsive(false);
 
-     return view('client/client-each-station',['chart'=>$chart,'admin'=>$admin]);
+     return view('client/client-each-station',['chart'=>$chart,'admin'=>$admin,'labels'=>$labels,'type'=>$type]);
+
+
+  }
+
+//  view trend
+  public function station_trend($id)
+  {
+            $admin_id=$id;
+            $admin= DB::table('admins')->where('id',$admin_id)->get();
+            $admin_name=$admin[0]->station_name;
+
+
+     return view('client/client-station-trend',['admin'=>$admin_name]);
+
+
+  }
+  //  view todays crime
+    public function today($id)
+    {
+       $admin_id=$id;
+       $admin= DB::table('admins')->where('id',$admin_id)->get();
+       $admin_name=$admin[0]->station_name;
+
+       return view('client/client-station-today',['admin'=>$admin_name]);
+
+
+    }
+//fetches  each station contact
+  public function contacts($id)
+  {
+
+       $admin_id=$id;
+       $admin= DB::table('admins')->where('id',$admin_id)->get();
+       $admin_name=$admin[0]->station_name;
+
+
+     return view('client/client-station-contact',['admin'=>$admin_name]);
+
+
   }
 
   public function get_index()

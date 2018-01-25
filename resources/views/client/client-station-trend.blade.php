@@ -61,8 +61,8 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> Station analytics
-                      <small>Familiarize yourself with stations around you</small>
+                  <h1 class="page-title">  analytics
+                      <small>{{$admin}}</small>
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">
@@ -72,7 +72,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>view crime</span>
+                              <span>trends</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">

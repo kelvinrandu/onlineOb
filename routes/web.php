@@ -25,6 +25,10 @@ Route::get('/post-crime', 'UserController@index')->name('crime');
 Route::get('/request', 'UserController@get_index')->name('get.request');
 Route::get('/analytics', 'UserController@analytics')->name('get.analytics');
 Route::get('/station/{id}/analytics', 'UserController@each_station')->name('get.each.station');
+Route::get('/station/{id}/preference', 'UserController@preference')->name('get.preference');
+Route::get('/station/{id}/contacts', 'UserController@contacts')->name('get.contact');
+Route::get('/station/{id}/trend', 'UserController@station_trend')->name('get.trend');
+Route::get('/station/{id}/today', 'UserController@today')->name('get.today');
 
 //
 // Route::get('/', 'AdminController@index')->name('admin.dashboard');

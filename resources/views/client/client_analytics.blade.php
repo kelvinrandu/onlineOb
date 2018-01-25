@@ -68,7 +68,7 @@
                       <ul class="page-breadcrumb">
                           <li>
                               <i class="icon-home"></i>
-                              <a href="index.html">Home</a>
+                              <a href="{{ route('home.dashboard') }}">Home</a>
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
@@ -106,9 +106,25 @@
                     <div class="row">
                                                       <div class="col-md-4">
                   <!-- END PAGE HEADER-->
-   {!! $chart->render() !!}
+                   {!! $chart->render() !!}@foreach ($admin as $row)
+                     {{$row->id}}:{{$row->station_name}}<br/>
+                   @endforeach
          </div>
+
+<!-- END PAGE HEADER-->
+
       </div>
+      <div class="row">
+                                        <div class="col-md-4">
+    <!-- END PAGE HEADER-->
+    @foreach ($admin as $row)
+       {{$row->id}}:{{$row->station_name}}<br/>
+     @endforeach
+</div>
+
+<!-- END PAGE HEADER-->
+
+</div>
    </div>
 
               </div>
