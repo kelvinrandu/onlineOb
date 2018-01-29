@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 
+
 Auth::routes();
+//facebook login
+Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index')->name('home.dashboard');
 Route::post('/crime', 'UserController@create')->name('crime');
@@ -29,6 +33,8 @@ Route::get('/station/{id}/preference', 'UserController@preference')->name('get.p
 Route::get('/station/{id}/contacts', 'UserController@contacts')->name('get.contact');
 Route::get('/station/{id}/trend', 'UserController@station_trend')->name('get.trend');
 Route::get('/station/{id}/today', 'UserController@today')->name('get.today');
+
+
 
 //
 // Route::get('/', 'AdminController@index')->name('admin.dashboard');
