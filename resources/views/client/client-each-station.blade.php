@@ -54,9 +54,7 @@
               <!-- BEGIN CONTENT BODY -->
               <div class="page-content">
                   <!-- BEGIN PAGE HEADER-->
-                  <!-- BEGIN THEME PANEL -->
-
-                  <!-- END THEME PANEL -->
+ END THEME PANEL -->
 
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
