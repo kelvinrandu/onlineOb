@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+  use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Redirect;
 
@@ -58,31 +58,38 @@ class LoginController extends Controller
    public function handleProviderCallback()
    {
 
-    $userSocial = Socialite::driver('facebook')->user();
+     $userSocial = Socialite::driver('facebook')->user();
 
-    /*get the user from the database that matches the linkedin user*/
-    // $findUser = User::whereEmail($userSocial->email)->first();
-    return  $userSocial->email;
 
-    // if($findUser){
-    //   Auth::login($userSocial);
-    //   return 'done with old';
-    //
-    // }else{
-    //
-    //   $user = new User;
-    //   $user->fname =  $userSocial->name;
-    //   $user->lname =  $userSocial->name;
-    //   $user->email =  $userSocial->email;
-    //   $user->avatar =  $userSocial->avatar;
-    //   $user->gender =  0 ;
-    //   $user->remember_token =  $userSocial->token;
-    //   $user->password =  bcrypt(12345678);
-    //   $user->save();
-    //   Auth::login($userSocial);
-    //   return 'done with new';
-    //
-    // }
+     if($userSocial->email){
+       $findUser = User::whereEmail($userSocial->email)->first();
+
+
+       if($findUser){
+         Auth::login($userSocial);
+         return 'done with old';
+
+       }else{
+
+         $user = new User;
+         $user->fname =  $userSocial->name;
+         $user->lname =  $userSocial->name;
+         $user->email =  $userSocial->email;
+         $user->avatar =  $userSocial->avatar;
+         $user->gender =  0 ;
+         $user->remember_token =  $userSocial->token;
+         $user->password =  bcrypt(12345678);
+         $user->save();
+         Auth::login($userSocial);
+         return redirect('home')->with('success','sign up succesfull');
+
+       }
+
+
+
+     }
+
+     return redirect('/login')->with('message','please verify your email in facebook');
 
 
 

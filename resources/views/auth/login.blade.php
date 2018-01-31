@@ -68,6 +68,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
                 </div>
+
+                          @if(Session::has('message'))
+                              <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
+                          @endif
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -84,10 +88,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
                 </div>
                 <div class="login-options">
-                    <!-- <h4>Or login with</h4>
+                   <h4>Or login with</h4>
                     <ul class="social-icons">
                         <li>
-                            <a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
+                            <a class="social-icon-color facebook" data-original-title="facebook" href="{{ url('auth/facebook') }}"></a>
                         </li>
                         <li>
                             <a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>
@@ -98,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a class="social-icon-color linkedin" data-original-title="Linkedin" href="javascript:;"></a>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
                 <div class="create-account">
                     <p>
