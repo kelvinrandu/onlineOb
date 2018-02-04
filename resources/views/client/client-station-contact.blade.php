@@ -288,7 +288,9 @@
         <!-- <div class="page-container">
 
           </div> -->
-         {!! $map['html'] !!}
+          <div style="width: 500px; height: 500px;">
+                 {!! Mapper::render() !!}
+         </div>
         </div>
 
 

@@ -166,6 +166,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        Cornford\Googlmapper\MapperServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +234,7 @@ return [
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
          'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+         'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 

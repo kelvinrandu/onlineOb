@@ -103,6 +103,7 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
+                
 
      @foreach ($admin as $row)
        <a href="{{ route('get.preference',$row->id) }}" >
