@@ -16,5 +16,9 @@ class Contact extends Model
 {
   return $this->belongsToMany('App\Court_case', 'case_contacts');
 }
+public function contacts()
+{
+return $this->belongsToMany('App\Court_case', 'case_contacts');
+}
 
 }

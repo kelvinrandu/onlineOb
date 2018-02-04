@@ -958,17 +958,6 @@
                                                         </div>
 
                                                     </div>
-
-                                                                                                        <div class="form-group">
-                                                                                                            <label class="control-label col-md-3">Location
-                                                                                                                <span class="required"> * </span>
-                                                                                                            </label>
-                                                                                                            <div class="col-md-4">
-                                                                                                                <input type="text" class="form-control" name="location" />
-                                                                                                                <span class="help-block"> Provide location of the crime </span>
-                                                                                                            </div>
-                                                                                                        </div>
-
                                                 </div>
                                                 <div class="tab-pane" id="tab2">
                                                     <h3 class="block">Provide your Personal info </h3>
@@ -988,7 +977,7 @@
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-4">
-                                                            <input type="text" class="form-control" name="phone_number" />
+                                                            <input type="text" class="form-control" name="phone" />
                                                             <span class="help-block"> Provide your phonenumber</span>
                                                         </div>
                                                     </div>
@@ -1001,7 +990,7 @@
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-4">
-                                                            <input type="date" class="form-control" name="date" />
+                                                            <input type="date" class="form-control" name="gender" />
                                                             <span class="help-block"> </span>
                                                         </div>
                                                     </div>
@@ -1011,7 +1000,7 @@
                                                             <textarea class="form-control" rows="3" name="remarks"></textarea>
                                                         </div>
                                                     </div>
-
+                                          
 
                                                 </div>
                                                 <div class="tab-pane" id="tab4">
@@ -1021,12 +1010,6 @@
                                                         <label class="control-label col-md-3">Station:</label>
                                                         <div class="col-md-4">
                                                             <p class="form-control-static" data-display="country"> </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Location:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="location"> </p>
                                                         </div>
                                                     </div>
 
@@ -1047,7 +1030,7 @@
                                                      <div class="form-group">
                                                         <label class="control-label col-md-3">Phone:</label>
                                                         <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="phone_number"> </p>
+                                                            <p class="form-control-static" data-display="phone"> </p>
                                                         </div>
                                                     </div>
 

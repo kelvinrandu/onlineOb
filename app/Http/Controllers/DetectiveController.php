@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use  Auth;
 use App\Court_case;
+use App\Notifications\AssignedDetective;
+use App\Case_contact;
 use App\Admin;
 use App\User;
 use App\Type;
@@ -89,7 +91,18 @@ class DetectiveController extends Controller
                             $present->contacts()->attach(['contact_id'=>Input::get('contact_id')]);
 
                            }
-                    //if succesfull the redirects to homepage
+
+                    $me = DB::table('report_crimes')->where('id',$crime_id)
+                    ->value('user_id');
+                    $contact = DB::table('case_contacts')->where('court_case_id',$case_id)
+                    ->value('contact_id');
+                    $detective = DB::table('contacts')->where('id',$contact)
+                    ->select('Fname','lname','phone','email')
+                    ->get();
+                    //get user associated with the case
+                     $user = User::find($me);
+                     $user->notify(new AssignedDetective($detective) );
+                      //if succesfull the redirects to homepage
                      return redirect()->route('admin.dashboard')->with('message','Statement recorded  succesfully');
 
                }

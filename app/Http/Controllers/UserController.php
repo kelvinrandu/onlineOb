@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Session;
 use Notification;
 use Charts;
+use GMaps;
 
 
 
@@ -117,12 +118,19 @@ class UserController extends Controller
   public function contacts($id)
   {
 
-       $admin_id=$id;
-       $admin= DB::table('admins')->where('id',$admin_id)->get();
-       $admin_name=$admin[0]->station_name;
+       // $admin_id=$id;
+       // $admin= DB::table('admins')->where('id',$admin_id)->get();
+       // $admin_name=$admin[0]->station_name;
+       $config = array();
+       $config['center'] = 'New York, USA';
+       $config['zoom'] = 'New York, USA';
+       $config['map_height'] = '500px';
+       GMaps::initialize($config);
+       $map = GMaps::create_map();
 
 
-     return view('client/client-station-contact',['admin'=>$admin_name]);
+
+     return view('client/client-station-contact',['map'=>$map]);
 
 
   }
@@ -144,22 +152,25 @@ class UserController extends Controller
     $user_id= Auth::user()->id;
     //validate the id number against the name
     $this->validate($request,[
-      'phone' => 'required|exists:identifications,id_number'
+      'idNo' => 'required|exists:identifications,id_number',
+      'date' => 'date|before:today'
     ]);
     Report_crime::create(array(
         'user_id'=>$user_id,
         'admin_id'=>Input::get('country'),
-        'phonenumber'=>Input::get('city'),
-        'idNo'=>Input::get('phone'),
-        'date'=>Input::get('gender'),
+        'phonenumber'=>Input::get('phone_number'),
+        'idNo'=>Input::get('idNo'),
+        'date'=>Input::get('date'),
         'type_id'=>Input::get('fullname'),
+        'location'=>Input::get('location'),
         'status'=>0,
         'crime_description'=>Input::get('remarks')
 
     ));
-  // dd(Input::all() );
-  $user = User::find($user_id);
-  $user->notify(new RequestReceived() );
+
+
+  // $user = User::find($user_id);
+  // $user->notify(new RequestReceived() );
 
       return redirect()->route('home.dashboard')->with('message','Request posted succesfull');
   }

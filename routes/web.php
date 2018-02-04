@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
+
 Route::get('/home', 'HomeController@index')->name('home.dashboard');
 Route::post('/crime', 'UserController@create')->name('crime');
 Route::get('/sent', 'UserController@success')->name('success.post');

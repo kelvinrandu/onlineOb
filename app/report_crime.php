@@ -25,7 +25,7 @@ class Report_crime extends Model
   }
 
   protected $fillable = [
-    'user_id',  'admin_id','phonenumber','date','idNo','type_id', 'status','crime_description',
+    'user_id',  'admin_id','phonenumber','date','idNo','type_id', 'status', 'location','crime_description',
   ];
 
 
