@@ -54,7 +54,7 @@
               <!-- BEGIN CONTENT BODY -->
               <div class="page-content">
                   <!-- BEGIN PAGE HEADER-->
- END THEME PANEL -->
+
 
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
@@ -103,9 +103,7 @@
 
                   <!-- END PAGE HEADER-->
 
-   {!! $chart->render() !!}  @foreach ($type as $row)
-       {{$row->id}}:{{$row->name}}<br/>
-     @endforeach
+   {!! $chart->render() !!}
               </div>
               <!-- END CONTENT BODY -->
 

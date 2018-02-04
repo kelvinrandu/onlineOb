@@ -106,7 +106,7 @@
                     <div class="row">
                                                       <div class="col-md-4">
                   <!-- END PAGE HEADER-->
-                   {!! $chart->render() !!}@foreach ($admin as $row)
+                   {!! $chart->render() !!} @foreach ($admin as $row)
                      {{$row->id}}:{{$row->station_name}}<br/>
                    @endforeach
          </div>
