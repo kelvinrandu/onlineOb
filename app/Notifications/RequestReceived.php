@@ -44,6 +44,9 @@ class RequestReceived extends Notification
                     ->line('Your request has been received and being processed.We will update  you on the status of your report with details')
                     ->action('View request', url('http://localhost:8000/login'))
                     ->line('Thank you for using our application!');
+
+                    ->markdown('mail.index', ['detective' =>  $detective]);
+
     }
 
     /**

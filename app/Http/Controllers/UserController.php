@@ -169,8 +169,8 @@ class UserController extends Controller
     ));
 
 
-  // $user = User::find($user_id);
-  // $user->notify(new RequestReceived() );
+   $user = User::find($user_id);
+   $user->notify(new RequestReceived() );
 
       return redirect()->route('home.dashboard')->with('message','Request posted succesfull');
   }

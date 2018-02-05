@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Notifications;
+use Illuminate\Http\Request;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class AssignedDetective extends Notification
+class DetectiveAssigned extends Notification
 {
     use Queueable;
 
@@ -16,9 +17,9 @@ class AssignedDetective extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($detective)
     {
-        //
+         $this->detective = $detective;
     }
 
     /**
@@ -40,12 +41,10 @@ class AssignedDetective extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-
-
+      // $detective = $request->detective;
+      // dd($this->detective);
+        return (new MailMessage)->markdown('mail.assigned.detective',['detective' =>$this->detective ]);
+         // ->with('detective', $this->detective);
     }
 
     /**

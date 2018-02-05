@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use  Auth;
 use App\Court_case;
 use App\Notifications\AssignedDetective;
+use App\Notifications\DetectiveAssigned;
 use App\Case_contact;
 use App\Admin;
 use App\User;
@@ -55,6 +56,14 @@ class DetectiveController extends Controller
     public function create()
     {
 
+      $this->validate($request,[
+        'admin_id' => 'required',
+        'statement_id' => 'required',
+        'report_crimes_id' => 'date|before:today'
+        'statement' => 'required',
+
+      ]);
+
            $id = Auth::id();
            $crime_id=Input::get('crime_id');
            $statement_id=Input::get('statement_id');
@@ -101,7 +110,7 @@ class DetectiveController extends Controller
                     ->get();
                     //get user associated with the case
                      $user = User::find($me);
-                     $user->notify(new AssignedDetective($detective) );
+                     $user->notify(new DetectiveAssigned($detective));
                       //if succesfull the redirects to homepage
                      return redirect()->route('admin.dashboard')->with('message','Statement recorded  succesfully');
 
