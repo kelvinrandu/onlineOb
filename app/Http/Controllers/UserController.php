@@ -16,6 +16,7 @@ use Session;
 use Notification;
 use Charts;
 use GMaps;
+use Carbon;
 
 
 
@@ -94,23 +95,41 @@ class UserController extends Controller
 //  view trend
   public function station_trend($id)
   {
-            $admin_id=$id;
-            $admin= DB::table('admins')->where('id',$admin_id)->get();
-            $admin_name=$admin[0]->station_name;
+           $labels = Report_crime::with('admin')->where('admin_id',$id)->get();
+           $type = Type::all();
+
+            $chart = Charts::database($labels ,'bar','highcharts')
+                ->title('Crime rate ')
+                ->groupBy('type_id')
+                 ->elementLabel('frequency of the crime')
+                // ->values([5,10,20,15,30])
+               ->dimensions(1000,500)
+               ->responsive(false);
 
 
-     return view('client/client-station-trend',['admin'=>$admin_name]);
+     return view('client/client-station-trend',['chart'=>$chart,'type'=>$type]);
 
 
   }
   //  view todays crime
     public function today($id)
     {
-       $admin_id=$id;
-       $admin= DB::table('admins')->where('id',$admin_id)->get();
-       $admin_name=$admin[0]->station_name;
 
-       return view('client/client-station-today',['admin'=>$admin_name]);
+       $type = Type::all();
+       $admin= DB::table('admins')->where('id',$id)->get();
+       $users = Report_crime::whereDate('created_at', '>=', \Carbon::today()->toDateString())
+       ->where('admin_id',$id)->get();
+       $chart = Charts::database($users ,'bar','highcharts')
+           ->title('Crime rate ')
+           ->groupBy('type_id')
+            ->elementLabel('frequency of the crime')
+           // ->values([5,10,20,15,30])
+          ->dimensions(1000,500)
+          ->responsive(false);
+
+
+        return view('client/client-station-today',['chart'=>$chart,'admin'=>$admin,'type'=>$type]);
+
 
 
     }

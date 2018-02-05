@@ -45,7 +45,7 @@ class RequestReceived extends Notification
                     ->action('View request', url('http://localhost:8000/login'))
                     ->line('Thank you for using our application!');
 
-                    ->markdown('mail.index', ['detective' =>  $detective]);
+                  
 
     }
 

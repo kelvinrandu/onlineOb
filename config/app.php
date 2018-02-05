@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Nairobi',
 
     /*
     |--------------------------------------------------------------------------
@@ -235,6 +235,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
          'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
          'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+         'Carbon' => 'Carbon\Carbon',
 
     ],
 

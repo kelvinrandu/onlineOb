@@ -62,7 +62,7 @@
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
                   <h1 class="page-title"> analytics
-                      <small>{{$admin}}</small>
+                      <small>{{$admin[0]->station_name}}</small>
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">
@@ -104,6 +104,9 @@
                   </div>
 
                   <!-- END PAGE HEADER-->
+                   {!! $chart->render() !!}@foreach ($type as $row)
+                     {{$row->id}}:{{$row->name}}<br/>
+                   @endforeach
 
               </div>
               <!-- END CONTENT BODY -->
