@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-
+//verify email route
+Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+//send email token
+Route::get('verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 Auth::routes();
 //facebook login
 Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');

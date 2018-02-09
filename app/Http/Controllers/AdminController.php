@@ -44,7 +44,7 @@ class AdminController extends Controller
 
         //return $admin ;
       //  $request =Report_crime::all();
-   return redirect()->intended(route('detective.dashboard'));
+       return redirect()->intended(route('detective.dashboard'));
 
       }
       Report_crime::with('user')->where('id',$id)->get();
@@ -67,8 +67,8 @@ class AdminController extends Controller
       {
 
       //   $request= DB::table('report_crimes')->where('id',$id)->get();
-         $request=  Report_crime::with('user')->where('id',$id)->get();
-           $ward= DB::table('admins')->where('status',1)->get();
+          $request=  Report_crime::with('user')->where('id',$id)->get();
+          $ward= DB::table('admins')->where('status',1)->get();
 
          return view('admin/admin_view_request',array('request' => $request ),array('ward' => $ward ));
 
@@ -88,8 +88,8 @@ class AdminController extends Controller
       //create statement
       public function create()
       {
-              $id = Auth::id();
-             $crime_id=Input::get('crime_id');
+            $id = Auth::id();
+            $crime_id=Input::get('crime_id');
         Statement::create(array(
             'crime_id'=>$crime_id,
             'admin_id'=>Input::get('admin_id'),
@@ -108,11 +108,9 @@ class AdminController extends Controller
 
                    return redirect()->route('admin.dashboard')->with('message','Statement recorded  succesfully');
 
-
                 }
 
-                return redirect()->back()->with('message','Statement not recorded please try again');
-
+                   return redirect()->back()->with('message','Statement not recorded please try again');
 
       }
 

@@ -68,6 +68,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
                 </div>
+                @if(Session::has('status'))
+                    <div class="alert alert-success"><em> {!! session('status') !!}</em></div>
+                @endif
 
                           @if(Session::has('message'))
                               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>

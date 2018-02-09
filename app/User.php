@@ -15,7 +15,7 @@ class User extends Authenticatable
 
 
     public function report_crimes()
-  {                  
+  {
       return $this->hasMany('App\Report_crime');
   }
 
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fName',  'lName', 'email', 'avatar','gender','password',
+        'fName',  'lName', 'email', 'avatar','gender','verifyToken','status','password',
     ];
 
     /**
