@@ -167,6 +167,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -236,6 +237,7 @@ return [
          'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
          'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
          'Carbon' => 'Carbon\Carbon',
+         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
 
     ],
 

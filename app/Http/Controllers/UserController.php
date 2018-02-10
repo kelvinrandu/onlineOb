@@ -17,6 +17,7 @@ use Notification;
 use Charts;
 use GMaps;
 use Carbon;
+ use Mapper;
 
 
 
@@ -136,20 +137,21 @@ class UserController extends Controller
 //fetches  each station contact
   public function contacts($id)
   {
-
+      $contacts= Station_contact::where('admin_id',$id)->get();
        // $admin_id=$id;
        // $admin= DB::table('admins')->where('id',$admin_id)->get();
        // $admin_name=$admin[0]->station_name;
-       $config = array();
-       $config['center'] = 'New York, USA';
-       $config['zoom'] = 'New York, USA';
-       $config['map_height'] = '500px';
-       GMaps::initialize($config);
-       $map = GMaps::create_map();
+       // $config = array();
+       // $config['center'] = 'New York, USA';
+       // $config['zoom'] = 'New York, USA';
+       // $config['map_height'] = '500px';
+       // GMaps::initialize($config);
+       // $map = GMaps::create_map();
+         Mapper::map($contacts[0]->longitude, $contacts[0]->latitude);
 
 
 
-     return view('client/client-station-contact',['map'=>$map]);
+     return view('client/client-station-contact');
 
 
   }
