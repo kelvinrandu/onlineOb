@@ -18,7 +18,7 @@
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                       <li class="nav-item start active open">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('admin.dashboard') }}" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
                               <span class="selected"></span>
@@ -27,7 +27,7 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('admin.get.report') }}" class="nav-link nav-toggle">
                               <i class="icon-eye"></i>
                               <span class="title">View crime reports</span>
                               <span class="arrow"></span>
@@ -35,7 +35,7 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('get.admin.trend') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">analytics</span>
                               <span class="arrow"></span>
@@ -853,6 +853,50 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
+
+                                      <div class="row">
+                                        
+                                          <div class="col-md-6">
+                                              <div class="dashboard-stat2 ">
+                                                  <div class="display">
+                                                      <div class="number">
+                                                          <h3 class="font-blue">
+                                                              <span data-counter="counterup" data-value="747">{{$all}}</span>
+
+                                                          </h3>
+                                                          <small>All crimes</small>
+                                                      </div>
+                                                      <div class="icon">
+                                                            <i class="icon-user"></i>
+                                                      </div>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="dashboard-stat2 ">
+                                                  <div class="display">
+                                                      <div class="number">
+                                                          <h3 class="font-purple-soft">
+                                                              <span data-counter="counterup" data-value="{{$solved}}">{{$solved}}</span>
+                                                          </h3>
+                                                          <small>Assigned cases</small>
+                                                      </div>
+                                                      <div class="icon">
+                                                          <i class="icon-user"></i>
+                                                      </div>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-12">
+
+
+                                               {!! $chart->render() !!} @foreach ($type as $row)
+                                                 {{$row->id}}:{{$row->name}}<br/>
+                                               @endforeach
+                                      </div>
 
 
               </div>

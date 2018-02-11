@@ -39,6 +39,8 @@
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{asset('layout_assets/global/css/components-md.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
         <link href="{{asset('layout_assets/global/css/plugins-md.min.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('layout_assets/apps/css/todo.min.css')}}" rel="stylesheet" type="text/css" />
+            <link href="{{asset('layout_assets/pages/css/contact.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="{{asset('layout_assets/layouts/layout2/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
@@ -108,18 +110,22 @@
                <!-- END PAGE ACTIONS -->
                <!-- BEGIN PAGE TOP -->
                <div class="page-top">
+                  @if (count(Auth::user()->fName)==1)
                    <!-- BEGIN HEADER SEARCH BOX -->
-                   <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-                   <!-- <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+
+                   <form class="search-form search-form-expanded" action="{{ route('search') }}" method="GET">
+
+                           {{ csrf_field() }}
                        <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Search..." name="query">
+                           <input type="text" class="form-control" placeholder="Search..." name="search">
                            <span class="input-group-btn">
                                <a href="javascript:;" class="btn submit">
                                    <i class="icon-magnifier"></i>
                                </a>
                            </span>
                        </div>
-                   </form> -->
+                   </form>
+                   @endif
                    <!-- END HEADER SEARCH BOX -->
                    <!-- BEGIN TOP NAVIGATION MENU -->
                    <div class="top-menu">

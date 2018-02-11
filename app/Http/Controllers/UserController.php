@@ -55,6 +55,22 @@ class UserController extends Controller
 
      return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
   }
+  //my request
+  public function myRequest($id)
+  {
+     //       $labels = Report_crime::with('admin')->get();
+     //       $admin= DB::table('admins')->where('status',0)->get();
+     //
+     //       $chart = Charts::database($labels,'bar','highcharts')
+     //           ->title('Crime rate in Nairobi')
+     //           ->groupBy('admin_id')
+     //            ->elementLabel('Number of reported crimes')
+     //           // ->values([5,10,20,15,30])
+     //          ->dimensions(1000,500)
+     //          ->responsive(false);
+     //
+     // return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
+  }
   //fetches  preferences
   public function preference($id)
   {
@@ -137,21 +153,14 @@ class UserController extends Controller
 //fetches  each station contact
   public function contacts($id)
   {
-      $contacts= Station_contact::where('admin_id',$id)->get();
-       // $admin_id=$id;
-       // $admin= DB::table('admins')->where('id',$admin_id)->get();
-       // $admin_name=$admin[0]->station_name;
-       // $config = array();
-       // $config['center'] = 'New York, USA';
-       // $config['zoom'] = 'New York, USA';
-       // $config['map_height'] = '500px';
-       // GMaps::initialize($config);
-       // $map = GMaps::create_map();
+         $contacts= Station_contact::where('admin_id',$id)->get();
+          $contact = Admin::where('id',$id)->get();
+
          Mapper::map($contacts[0]->longitude, $contacts[0]->latitude);
 
 
 
-     return view('client/client-station-contact');
+     return view('client/client-station-contact',['contact'=>$contact,'contacts'=>$contacts ]);
 
 
   }
@@ -174,7 +183,7 @@ class UserController extends Controller
     //validate the id number against the name
     $this->validate($request,[
       'idNo' => 'required|exists:identifications,id_number',
-      'date' => 'date|before:today'
+      'date' => 'date|before:tomorrow'
     ]);
     Report_crime::create(array(
         'user_id'=>$user_id,
@@ -196,4 +205,41 @@ class UserController extends Controller
       return redirect()->route('home.dashboard')->with('message','Request posted succesfull');
   }
 
+  //search function
+  public function search(Request $request)
+  {
+
+     $searchterm = $request['search'];
+    //if the user enters a keyword then use that keyword to search
+     if ($searchterm){
+
+        $admin=[];
+
+       $results = Report_crime::with('user')
+       ->leftJoin('type', 'type.id', '=', 'report_crimes.type_id')
+       ->where('location', 'LIKE', '%'. $searchterm .'%')
+       ->orWhere('type.name', 'LIKE', '%'. $searchterm .'%')
+       ->get();
+
+  // if no record is found then redirect the user back
+       if($results->isEmpty()){
+
+              return redirect()->back()->with('message','no record found');
+
+        }
+  // if record is found then format it into a chart and send it to view
+        $chart = Charts::database($results,'bar','highcharts')
+         ->title('Crime rate in Nairobi')
+         ->groupBy('admin_id')
+          ->elementLabel('Number of reported crimes')
+           // ->values([5,10,20,15,30])
+          ->dimensions(1000,500)
+          ->responsive(false);
+
+          return view('client/client-search',['chart'=>$chart,'admin'=>$admin]);
+
+     }
+       // if  no keyword was passed by the user then redirect back and notify the user
+          return redirect()->back()->with('message','no search term found');
+  }
 }

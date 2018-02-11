@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="page-container">
           <!-- BEGIN SIDEBAR -->
@@ -18,7 +17,7 @@
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                       <li class="nav-item start active open">
-                          <a href="{{ route('home.dashboard') }}" class="nav-link nav-toggle">
+                          <a href="{{ route('admin.dashboard') }}" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
                               <span class="selected"></span>
@@ -27,15 +26,15 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="{{ route('get.request') }}" class="nav-link nav-toggle">
-                              <i class="icon-pencil"></i>
-                              <span class="title">Record statement</span>
-                              <span class="arrow"></span>
-                          </a>
+                        <a href="{{ route('admin.get.report') }}" class="nav-link nav-toggle">
+                            <i class="icon-eye"></i>
+                            <span class="title">View crime reports</span>
+                            <span class="arrow"></span>
+                        </a>
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="{{ route('get.analytics') }}" class="nav-link nav-toggle">
+                          <a href="{{ route('get.admin.trend') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Analytics</span>
                               <span class="arrow"></span>
@@ -61,7 +60,7 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> analytics
+                  <h1 class="page-title"> crime report record
                       <small></small>
                   </h1>
                   <div class="page-bar">
@@ -72,7 +71,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>contacts</span>
+                              <span>records</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">
@@ -102,67 +101,55 @@
                           </div>
                       </div>
                   </div>
+                  <div class="todo-container">
+                      <div class="row">
+                          <div class="col-md-10 col-sm-5 col-xs-12 col-centered">
 
-                  <!-- END PAGE HEADER-->
-                  <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                  <div style="width: 500px; height: 500px;">
-                        {!! Mapper::render() !!}
-                 </div>
-                 </div>
+                              <div class="todo-tasks-container">
+                                  <div class="todo-head">
 
-                          <div class="col-md-4">
-                              <div class="c-body">
-                                  <div class="c-section">
-                                      <h3>{{$contact[0]->station_name}}</h3>
+                                      <h3>
+                                          <span class="todo-grey"></span> statements</h3>
+                                      <p class="todo-inline">{{$count}} Statements
+                                          <a class="todo-add-button" href="#todo-members-modal" data-toggle="modal">+</a>
+                                          <form class="search-form search-form-expanded" action="{{ route('admin.search') }}" method="GET">
+
+                                                  {{ csrf_field() }}
+                                              <div class="input-group col-md-4 pull-right">
+                                                  <input type="text" class="form-control" placeholder="Search..." name="search">
+                                                  <span class="input-group-btn">
+                                                      <a href="javascript:;" class="btn submit">
+                                                          <i class="icon-magnifier"></i>
+                                                      </a>
+                                                  </span>
+                                              </div>
+                                          </form>
+                                      </p>
+
+
                                   </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Address</div>
-                                      <p>25, Lorem Lis Street,
-                                          <br/>Orange C, California,
-                                          <br/>United States of America</p>
-                                  </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Contacts</div>
-                                      <p>
-                                          <strong>T</strong> 800 123 0000
-                                          <br/>
-                                          <strong>F</strong> 800 123 8888</p>
-                                  </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Social</div>
-                                      <br/>
-                                      <ul class="c-content-iconlist-1 ">
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-twitter"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-facebook"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-youtube-play"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-linkedin"></i>
-                                              </a>
-                                          </li>
-                                      </ul>
-                                  </div>
+                                  <ul class="todo-tasks-content">
+                                    @foreach ($requests as $row)
+
+                                      <li class="todo-tasks-item">
+                                          <h4 class="todo-inline">
+                                              <a href="{{ route('admin.get.each.report',$row->id) }}" >{{$row->user->fName}}    {{$row->user->lName}}</a>
+                                          </h4>
+                                          <p class="todo-inline todo-float-r">{{$row->type->name}},<?php $time=$row->created_at->diffForHumans(); ?>
+                                              <span class="todo-red"><?php echo $time ; ?></span>
+                                          </p>
+                                      </li></a>
+                                      @endforeach
+                                  </ul>
                               </div>
                           </div>
-
+                      </div>
+                  </div>
 
 
               </div>
               <!-- END CONTENT BODY -->
-  </div>
+
           </div>
 
 
@@ -170,6 +157,4 @@
 
 
       </div>
-      <!-- END CONTAINER -->
-      <!-- BEGIN FOOTER -->
-  @endsection
+@endsection

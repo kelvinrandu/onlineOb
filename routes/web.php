@@ -36,6 +36,7 @@ Route::get('/station/{id}/preference', 'UserController@preference')->name('get.p
 Route::get('/station/{id}/contacts', 'UserController@contacts')->name('get.contact');
 Route::get('/station/{id}/trend', 'UserController@station_trend')->name('get.trend');
 Route::get('/station/{id}/today', 'UserController@today')->name('get.today');
+Route::get('/search/preference', 'UserController@search')->name('search');
 
 
 
@@ -50,8 +51,11 @@ Route::prefix('admin')->group(function(){
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/request', 'AdminController@get_requests')->name('admin.get.request');
   Route::get('/request/{id}', 'AdminController@get_request')->name('admin.get.requests');
-  // Route::get('/statements', 'AdminController@get_statements')->name('detective.get.statements');
+  Route::get('/crime/report', 'AdminController@get_reports')->name('admin.get.report');
   Route::post('/make/statement', 'AdminController@create')->name('admin.create.statements');
+  Route::get('/crime/each/{id}/report', 'AdminController@get_each_report')->name('admin.get.each.report');
+  Route::get('/search/preference/admin', 'AdminController@search')->name('admin.search');
+  Route::get('/station/trend', 'AdminController@station_trend')->name('get.admin.trend');
 
   Route::post('/add/detective', 'DetectiveController@create_detective')->name('detective.add.detective');
   Route::get('/add/detective', 'DetectiveController@get_detective')->name('detective.get.detective');
@@ -60,4 +64,8 @@ Route::prefix('admin')->group(function(){
   Route::get('/detective', 'DetectiveController@index')->name('detective.dashboard');
   Route::get('/detective/statements/{id}', 'DetectiveController@get_index')->name('detective.get.statement');
   Route::post('/detective/make/case', 'DetectiveController@create')->name('detective.post.case');
+  // Route::get('/search/preference/admin', 'AdminController@search')->name('detective.search');
+  Route::get('/station/trend/detecive', 'DetectiveController@station_trend')->name('get.detective.trend');
+  Route::get('/detective/each/{id}/report', 'DetectiveController@get_each_report')->name('detective.get.each.report');
+    Route::get('/detecive/report', 'DetectiveController@get_reports')->name('detective.get.report');
 });

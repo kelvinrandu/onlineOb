@@ -31,12 +31,45 @@ class DetectiveController extends Controller
 //load the detective dashboard
     public function index()
     {
-       $id = Auth::id();
+
+       $admin = Auth::id();
+       $id = $admin-1;
+       $all = count(Report_crime::with('type')->where('admin_id',$id)->get());
+       $solved = count(Report_crime::with('type')->where('status','!=' , 0)->where('admin_id',$id)->get());
+       $labels = Report_crime::with('admin')->where('admin_id',$id)->get();
+       $type = Type::all();
+       $ward= DB::table('admins')->where('id',$id)->get();
        $request = DB::table('statements')->where('status',0)
-       ->where('admin_id', $id)
+       ->where('admin_id', $admin)
        ->get();
 
-      return view('admin.detective_dashboard',array('request' => $request ));
+
+
+        $chart = Charts::database($labels ,'bar','highcharts')
+            ->title('Crime rate ')
+            ->groupBy('type_id')
+             ->elementLabel('frequency of the crime')
+            // ->values([5,10,20,15,30])
+           ->dimensions(1000,500)
+           ->responsive(false);
+
+       // $request = DB::table('statements')->where('status',0)
+       // ->where('admin_id', $admin)
+       // ->get();
+       //
+       // $labels = Report_crime::with('admin')->where('admin_id',$id)->get();
+       // $type = Type::all();
+       // $ward= DB::table('admins')->where('id',$id)->get();
+       //
+       //  $chart = Charts::database($labels ,'bar','highcharts')
+       //      ->title('Crime rate ')
+       //      ->groupBy('type_id')
+       //       ->elementLabel('frequency of the crime')
+       //      // ->values([5,10,20,15,30])
+       //     ->dimensions(1000,500)
+       //     ->responsive(false);
+
+      return view('admin.detective_dashboard',['request' => $request,'all' => $all,'solved' => $solved,'chart'=>$chart,'type'=>$type,'admin'=>$ward]);
     }
 //fetch the selected statement
     public function get_index($id)
@@ -59,7 +92,7 @@ class DetectiveController extends Controller
       $this->validate($request,[
         'admin_id' => 'required',
         'statement_id' => 'required',
-        'report_crimes_id' => 'date|before:today'
+        'report_crimes_id' => 'date|before:today',
         'statement' => 'required',
 
       ]);
@@ -189,4 +222,78 @@ class DetectiveController extends Controller
        return redirect()->route('admin.dashboard')->with('message','crime type added succesfully');
 
     }
+    //  view trend
+public function station_trend()
+{
+   $admin = Auth::id();
+   $id = $admin-1;
+   $labels = Report_crime::with('admin')->where('admin_id',$id)->get();
+   $type = Type::all();
+   $ward= DB::table('admins')->where('id',$id)->get();
+   $request = DB::table('statements')->where('status',0)
+   ->where('admin_id', $admin)
+   ->get();
+
+
+
+    $chart = Charts::database($labels ,'bar','highcharts')
+        ->title('Crime rate ')
+        ->groupBy('type_id')
+         ->elementLabel('frequency of the crime')
+        // ->values([5,10,20,15,30])
+       ->dimensions(1000,500)
+       ->responsive(false);
+
+
+   return view('admin/detective-station-trend',['request'=>$request,'chart'=>$chart,'type'=>$type,'admin'=>$ward]);
+
+
+  }
+
+           //get  all crime reports requests from client
+        public function get_reports()
+        {
+
+            $crime = Auth::id();
+            $id = $crime-1;
+            //get all crimes related to the station
+            $requests = Report_crime::with('user')
+            ->with('type')
+            ->where('admin_id',$id)
+            ->where('status', 2)
+            ->get();
+            $count= count($requests);
+
+            $request = DB::table('statements')->where('status',0)
+            ->where('admin_id', $admin)
+            ->get();
+            return view('admin/detective-view-all-crimes',['request' => $request,'requests' => $requests,'count' => $count]);
+
+
+        }
+  //get  all crime reports requests from client
+public function get_each_report($id)
+{
+
+        $requests = Statement::with('report_crime')
+        ->where('crime_id', $id)
+        ->get();
+        $statement = Report_crime::with('user')
+        ->with('type')
+        ->where('id',$id)
+        ->get();
+
+        $case = Court_case::with('contacts')
+        ->where('report_crimes_id',$id)
+        ->first();
+
+        $request = DB::table('statements')->where('status',0)
+        ->where('admin_id', $admin)
+        ->get();
+
+
+ return view('admin/detective-view-each-case',['request' => $request,'requests' => $requests,'statement' => $statement,'case' => $case]);
+
+
+  }
 }

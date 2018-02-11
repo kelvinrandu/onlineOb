@@ -61,7 +61,7 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> analytics
+                  <h1 class="page-title"> analytic search
                       <small></small>
                   </h1>
                   <div class="page-bar">
@@ -72,7 +72,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>contacts</span>
+                              <span>search</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">
@@ -104,65 +104,11 @@
                   </div>
 
                   <!-- END PAGE HEADER-->
-                  <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                  <div style="width: 500px; height: 500px;">
-                        {!! Mapper::render() !!}
-                 </div>
-                 </div>
-
-                          <div class="col-md-4">
-                              <div class="c-body">
-                                  <div class="c-section">
-                                      <h3>{{$contact[0]->station_name}}</h3>
-                                  </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Address</div>
-                                      <p>25, Lorem Lis Street,
-                                          <br/>Orange C, California,
-                                          <br/>United States of America</p>
-                                  </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Contacts</div>
-                                      <p>
-                                          <strong>T</strong> 800 123 0000
-                                          <br/>
-                                          <strong>F</strong> 800 123 8888</p>
-                                  </div>
-                                  <div class="c-section">
-                                      <div class="c-content-label uppercase bg-blue">Social</div>
-                                      <br/>
-                                      <ul class="c-content-iconlist-1 ">
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-twitter"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-facebook"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-youtube-play"></i>
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="#">
-                                                  <i class="fa fa-linkedin"></i>
-                                              </a>
-                                          </li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </div>
-
-
+                   {!! $chart->render() !!}
 
               </div>
               <!-- END CONTENT BODY -->
-  </div>
+
           </div>
 
 
