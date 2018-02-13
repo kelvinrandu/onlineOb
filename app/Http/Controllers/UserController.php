@@ -77,11 +77,13 @@ class UserController extends Controller
 
       $admin_id=$id;
       $admin= DB::table('admins')->where('id',$admin_id)->get();
+      $url= DB::table('station_contacts')->where('admin_id',$admin_id)->value('url');
       $admin_name=$admin[0]->station_name;
 
 
 
-   return view('client/client-preferrences',['admin_id'=>$admin_id,'admin'=>$admin_name]);
+ return view('client/client-preferrences',['admin_id'=>$admin_id,'admin'=>$admin_name,'url'=>$url]);
+
 
 
 
@@ -159,8 +161,9 @@ class UserController extends Controller
          Mapper::map($contacts[0]->longitude, $contacts[0]->latitude);
 
 
-
-     return view('client/client-station-contact',['contact'=>$contact,'contacts'=>$contacts ]);
+// return redirect($contacts[0]->url);
+// return Redirect::to('$contacts[0]->url');
+  //   return view('client/client-station-contact',['contact'=>$contact,'contacts'=>$contacts ]);
 
 
   }

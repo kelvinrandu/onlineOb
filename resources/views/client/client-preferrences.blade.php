@@ -108,7 +108,7 @@
                     <a href="{{ route('get.today',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">Todays crime</div></strong>  </div></a>
                     <a href="{{ route('get.each.station',$admin_id) }}" > <div class="alert alert-success"> <strong><div class="pull right">Most Frequent crime</div></strong>  </div></a>
                     <a href="{{ route('get.trend',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">crime trend</div></strong>  </div></a>
-                    <a href="{{ route('get.contact',$admin_id) }}" > <div class="alert alert-success">  <strong><div class="pull right">contacts</div></strong>  </div></a>
+                    <a href="{{ $url }}" > <div class="alert alert-success">  <strong><div class="pull right">contacts</div></strong>  </div></a>
 
 
 
