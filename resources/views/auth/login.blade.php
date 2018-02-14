@@ -96,7 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a class="social-icon-color facebook" data-original-title="facebook" href="{{ url('auth/facebook') }}"></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>
                         </li>
                         <li>
@@ -104,7 +104,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                         <li>
                             <a class="social-icon-color linkedin" data-original-title="Linkedin" href="javascript:;"></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="create-account">
@@ -157,8 +157,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="form-group">
                             <label class="control-label visible-ie8 visible-ie9">Gender</label>
                             <select class="form-control" name="gender" placeholder="Gender" id="gender">
-                                <option value="1">Male</option>
-                                <option value="0">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select> </div>
 
 
@@ -176,7 +176,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </span>@endif </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                    <input  class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="password_confirmation" /> </div>
+                    <input  class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password-confirm"  placeholder="Re-type Your Password" name="password_confirmation" /> </div>
                 <div class="form-group margin-top-20 margin-bottom-20">
                     <label class="mt-checkbox mt-checkbox-outline">
                         <input type="checkbox" name="tnc" /> I agree to the

@@ -44,6 +44,7 @@ class UserController extends Controller
   {
            $labels = Report_crime::with('admin')->get();
            $admin= DB::table('admins')->where('status',0)->get();
+           $type = Type::all();
 
            $chart = Charts::database($labels,'bar','highcharts')
                ->title('Crime rate in Nairobi')
@@ -53,7 +54,7 @@ class UserController extends Controller
               ->dimensions(1000,500)
               ->responsive(false);
 
-     return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
+     return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin,'type'=>$type]);
   }
   //my request
   public function myRequest($id)
@@ -77,7 +78,9 @@ class UserController extends Controller
 
       $admin_id=$id;
       $admin= DB::table('admins')->where('id',$admin_id)->get();
-      $url= DB::table('station_contacts')->where('admin_id',$admin_id)->value('url');
+      $url = Station_contact::with('admin')->where('admin_id',$admin_id)->value('url');
+
+      // $url= DB::table('station_contacts')->where('admin_id',$admin_id)->value('url');
       $admin_name=$admin[0]->station_name;
 
 
@@ -220,8 +223,10 @@ class UserController extends Controller
 
        $results = Report_crime::with('user')
        ->leftJoin('type', 'type.id', '=', 'report_crimes.type_id')
+       ->leftJoin('users', 'users.id', '=', 'report_crimes.user_id')
        ->where('location', 'LIKE', '%'. $searchterm .'%')
        ->orWhere('type.name', 'LIKE', '%'. $searchterm .'%')
+       ->orWhere('users.gender', 'LIKE', '%'. $searchterm .'%')
        ->get();
 
   // if no record is found then redirect the user back
@@ -231,6 +236,7 @@ class UserController extends Controller
 
         }
   // if record is found then format it into a chart and send it to view
+        $type = Type::all();
         $chart = Charts::database($results,'bar','highcharts')
          ->title('Crime rate in Nairobi')
          ->groupBy('admin_id')
@@ -239,7 +245,7 @@ class UserController extends Controller
           ->dimensions(1000,500)
           ->responsive(false);
 
-          return view('client/client-search',['chart'=>$chart,'admin'=>$admin]);
+          return view('client/client-search',['chart'=>$chart,'admin'=>$admin,'type'=>$type,'search'=>$searchterm]);
 
      }
        // if  no keyword was passed by the user then redirect back and notify the user

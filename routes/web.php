@@ -50,10 +50,12 @@ Route::prefix('admin')->group(function(){
   Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/request', 'AdminController@get_requests')->name('admin.get.request');
+  Route::get('/requests', 'AdminController@getAllRequests')->name('admin.get.all.request');
   Route::get('/request/{id}', 'AdminController@get_request')->name('admin.get.requests');
   Route::get('/crime/report', 'AdminController@get_reports')->name('admin.get.report');
   Route::post('/make/statement', 'AdminController@create')->name('admin.create.statements');
   Route::get('/crime/each/{id}/report', 'AdminController@get_each_report')->name('admin.get.each.report');
+  Route::get('/crime/{id}/statement', 'AdminController@get_each_statement')->name('admin.get.each.statement');
   Route::get('/search/preference/admin', 'AdminController@search')->name('admin.search');
   Route::get('/station/trend', 'AdminController@station_trend')->name('get.admin.trend');
 

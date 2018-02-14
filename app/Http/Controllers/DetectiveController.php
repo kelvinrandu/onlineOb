@@ -86,12 +86,12 @@ class DetectiveController extends Controller
     }
 
   //creates case function
-    public function create()
+    public function create(Request $request)
     {
 
       $this->validate($request,[
-        'admin_id' => 'required',
-        'statement_id' => 'required',
+
+
         'report_crimes_id' => 'date|before:today',
         'statement' => 'required',
 
@@ -257,24 +257,72 @@ public function station_trend()
             $crime = Auth::id();
             $id = $crime-1;
             //get all crimes related to the station
-            $requests = Report_crime::with('user')
-            ->with('type')
-            ->where('admin_id',$id)
-            ->where('status', 2)
+            // $requests = Court_case::with('crime')
+            // ->where('admin_id',$crime)
+            //
+            // ->get();
+
+            $requests = Report_crime::with('user')->where('report_crimes.status',2)
+
+             ->where('report_crimes.admin_id', $id)
+              ->leftJoin('court_cases', 'court_cases.report_crimes_id', '=', 'report_crimes.id')
             ->get();
             $count= count($requests);
 
             $request = DB::table('statements')->where('status',0)
-            ->where('admin_id', $admin)
+            ->where('admin_id', $id)
             ->get();
-            return view('admin/detective-view-all-crimes',['request' => $request,'requests' => $requests,'count' => $count]);
+
+
+           return view('admin/detective-view-all-crimes',['request' => $request,'requests' => $requests,'count' => $count]);
 
 
         }
+        // public function search(Request $request)
+        // {
+        //
+        //    $searchterm = $request['search'];
+        //   //if the user enters a keyword then use that keyword to search
+        //  if ($searchterm){
+        //
+        //       $admin=[];
+        //       $count=[];
+        //
+        //      $results = Report_crime::with('user')
+        //      ->leftJoin('type', 'type.id', '=', 'report_crimes.type_id')
+        //       ->leftJoin('users', 'users.id', '=', 'report_crimes.user_id')
+        //      ->where('users.fName', 'LIKE', '%'. $searchterm .'%')
+        //      ->orWhere('users.lName', 'LIKE', '%'. $searchterm .'%')
+        //      ->get();
+        //
+        // // if no record is found then redirect the user back
+        //      if($results->isEmpty()){
+        //
+        //            return redirect()->back()->with('message','no record found');
+        //
+        //
+        //       }
+        // // if record is found then  send it to view
+        // $id = Auth::id();
+        // //get all crimes related to the station
+        //
+        // $count= count($results);
+        //
+        //
+        // $request = Report_crime::with('type')->where('status',0)
+        // ->where('admin_id', $id)
+        // ->get();
+        // return view('admin/admin-view-all-crimes',['request' => $request,'requests' => $results,'count' => $count]);
+        //
+        //
+        //    }
+        //      // if  no keyword was passed by the user then redirect back and notify the user
+        //         return redirect()->back()->with('message','no search term Entered');
+        //       }
   //get  all crime reports requests from client
 public function get_each_report($id)
 {
-
+           $crime = Auth::id();
         $requests = Statement::with('report_crime')
         ->where('crime_id', $id)
         ->get();
@@ -282,13 +330,13 @@ public function get_each_report($id)
         ->with('type')
         ->where('id',$id)
         ->get();
-
+ //
         $case = Court_case::with('contacts')
         ->where('report_crimes_id',$id)
         ->first();
 
         $request = DB::table('statements')->where('status',0)
-        ->where('admin_id', $admin)
+        ->where('admin_id', $crime)
         ->get();
 
 

@@ -17,4 +17,9 @@ class Court_case extends Model
   {
     return $this->belongsToMany('App\Contact', 'case_contacts');
   }
+
+  public function crime()
+  {
+      return $this->belongsTo('App\Report_crime','report_crimes_id');
+  }
 }

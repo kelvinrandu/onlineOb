@@ -72,7 +72,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>search</span>
+                              <span>search for {{$search}}</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">
@@ -104,7 +104,12 @@
                   </div>
 
                   <!-- END PAGE HEADER-->
+                  <div class="row">
                    {!! $chart->render() !!}
+                    </div>@foreach ($type as $row)
+                     {{$row->id}}:{{$row->name}}<br/>
+                   @endforeach
+
 
               </div>
               <!-- END CONTENT BODY -->

@@ -25,7 +25,7 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('detective.get.report') }}" class="nav-link nav-toggle">
                               <i class="icon-eye"></i>
                               <span class="title">View cases</span>
                               <span class="arrow"></span>
@@ -40,14 +40,7 @@
                           </a>
 
                       </li>
-                      <li class="nav-item  ">
-                          <a href="javascript:;" class="nav-link nav-toggle">
-                              <i class="icon-settings"></i>
-                              <span class="title">Add station</span>
-                              <span class="arrow"></span>
-                          </a>
 
-                      </li>
                       <li class="nav-item  ">
                           <a href="{{ route('detective.get.detective') }}" class="nav-link nav-toggle">
                               <i class="icon-users"></i>

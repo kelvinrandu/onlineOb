@@ -109,10 +109,10 @@
                                   <div class="todo-head">
 
                                       <h3>
-                                          <span class="todo-grey"></span> statements</h3>
-                                      <p class="todo-inline">{{$count}} Statements
-                                          <a class="todo-add-button" href="#todo-members-modal" data-toggle="modal">+</a>
-                                          <form class="search-form search-form-expanded" action="{{ route('detective.search') }}" method="GET">
+                                          <span class="todo-grey"></span> Cases</h3>
+                                      <p class="todo-inline">{{$count}} Cases
+                                          <a class="todo-add-button" href="#todo-members-modal" data-toggle="modal"></a>
+                                          <form class="search-form search-form-expanded" action="" method="GET">
 
                                                   {{ csrf_field() }}
                                               <div class="input-group col-md-4 pull-right">
@@ -133,10 +133,15 @@
 
                                       <li class="todo-tasks-item">
                                           <h4 class="todo-inline">
-                                              <a href="{{ route('detective.get.each.report',$row->id) }}" >{{$row->user->fName}}    {{$row->user->lName}}</a>
+                                              <a href="{{ route('detective.get.each.report',$row->id) }}" >{{$row->user->fName}} {{$row->user->lName}}</a>
                                           </h4>
                                           <p class="todo-inline todo-float-r">{{$row->type->name}},<?php $time=$row->created_at->diffForHumans(); ?>
                                               <span class="todo-red"><?php echo $time ; ?></span>
+                                                @if ($row->status == 0 )
+                                                <?php echo '(pending)' ; ?>
+                                                @else
+                                                <?php echo '(closed)' ; ?>
+                                                @endif
                                           </p>
                                       </li></a>
                                       @endforeach

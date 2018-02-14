@@ -1816,7 +1816,7 @@ pre {
   .col-md-3 {
     width: 25%; }
   .col-md-4 {
-    width: 33.33333%; }
+    width: 33.33333% !important; }
   .col-md-5 {
     width: 41.66667%; }
   .col-md-6 {

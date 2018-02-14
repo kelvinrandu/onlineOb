@@ -119,7 +119,25 @@ class AdminController extends Controller
 
 
    }
+   public function get_each_statement($id)
+   {
 
+
+            $statement = Report_crime::with('user')
+            ->with('type')
+            ->where('id',$id)
+            ->get();
+
+            $request = Report_crime::with('type')->where('status',0)
+            ->where('admin_id', $id)
+            ->get();
+
+
+   return view('admin/admin-view-each-statement',['request' => $request,'statement' => $statement]);
+
+
+   }
+ //get each request from the menu
       public function get_request($id)
       {
 
@@ -128,6 +146,23 @@ class AdminController extends Controller
           $ward= DB::table('admins')->where('status',1)->get();
 
          return view('admin/admin_view_request',array('request' => $request ),array('ward' => $ward ));
+
+      }
+      //get all requests
+      public function getAllRequests()
+      {
+
+          $id = Auth::id();
+          $request = Report_crime::with('type')->where('status',0)
+          ->where('admin_id', $id)
+          ->get();
+      //   $request= DB::table('report_crimes')->where('id',$id)->get();
+          $requests=  Report_crime::with('user')->where('admin_id',$id)->get();
+          $ward= DB::table('admins')->where('status',1)->get();
+          $count = count($requests);
+
+         return view('admin/admin-view-all-user-reports',['request' =>$request ,'requests' =>$requests , 'ward' => $ward, 'count' =>$count]);
+
 
       }
       //get statements

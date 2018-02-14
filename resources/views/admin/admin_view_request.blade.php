@@ -1,4 +1,4 @@
-get.admin.trend@extends('layouts.app')
+@extends('layouts.app')
 
 
 @section('content')
@@ -29,6 +29,14 @@ get.admin.trend@extends('layouts.app')
                         <a href="{{ route('admin.get.report') }}" class="nav-link nav-toggle">
                             <i class="icon-eye"></i>
                             <span class="title">View crime reports</span>
+                            <span class="arrow"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route('admin.get.all.request') }}" class="nav-link nav-toggle">
+                            <i class="icon-eye"></i>
+                            <span class="title">View all reported crimes</span>
                             <span class="arrow"></span>
                         </a>
 

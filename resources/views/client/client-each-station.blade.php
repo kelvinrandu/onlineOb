@@ -104,6 +104,12 @@
                   <!-- END PAGE HEADER-->
 
    {!! $chart->render() !!}
+    
+       <!-- END PAGE HEADER-->
+       @foreach ($type as $row)
+          {{$row->id}}:{{$row->name}}<br/>
+        @endforeach
+
               </div>
               <!-- END CONTENT BODY -->
 

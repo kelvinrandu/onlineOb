@@ -35,6 +35,14 @@
 
                       </li>
                       <li class="nav-item  ">
+                          <a href="{{ route('admin.get.all.request') }}" class="nav-link nav-toggle">
+                              <i class="icon-eye"></i>
+                              <span class="title">View all reported crimes</span>
+                              <span class="arrow"></span>
+                          </a>
+
+                      </li>
+                      <li class="nav-item  ">
                           <a href="{{ route('get.admin.trend') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">analytics</span>
@@ -855,7 +863,7 @@
                   <!-- END PAGE HEADER-->
 
                                       <div class="row">
-                                        
+
                                           <div class="col-md-6">
                                               <div class="dashboard-stat2 ">
                                                   <div class="display">

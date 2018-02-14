@@ -103,16 +103,80 @@
                       </div>
                   </div>
                   <!-- END PAGE HEADER-->
-                
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="portlet light portlet-fit ">
+                              <div class="portlet-title">
+                                  <div class="caption">
+                                      <i class=" icon-layers font-green"></i>
+                                      <span class="caption-subject font-green bold uppercase">Police stations</span>
+                                  </div>
+                              </div>
+                              <div class="portlet-body">
+                                  <div class="mt-element-card mt-element-overlay">
+                                    @foreach($admin->chunk(4) as $adminChunk)
+                                        <div class="row">
+                                            @foreach($adminChunk as $admin)
 
-     @foreach ($admin as $row)
-       <a href="{{ route('get.preference',$row->id) }}" >
-   <div class="alert alert-success">
 
-       <strong><div class="pull right">{{$row->station_name}}</div></strong>  </div>
+                                          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                              <div class="mt-card-item">
+                                                  <div class="mt-card-avatar mt-overlay-1">
+                                                      <img src="{{asset('layout_assets/pages/img/avatars/emblem.png')}}" />
 
-           </a>
-         @endforeach
+                                                      <div class="mt-overlay">
+                                                          <ul class="mt-info">
+                                                              <li>
+                                                                  <a class="btn default btn-outline" href="{{ route('get.preference',$admin->id) }}">
+                                                                      <i class="icon-magnifier"></i>
+                                                                  </a>
+                                                              </li>
+                                                              <!-- <li>
+                                                                  <a class="btn default btn-outline" href="javascript:;">
+                                                                      <i class="icon-link"></i>
+                                                                  </a>
+                                                              </li> -->
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="mt-card-content">
+                                                      <h3 class="mt-card-name">{{$admin->station_name}}</h3>
+                                                      <!-- <p class="mt-card-desc font-grey-mint">Utumishi kwa wote</p> -->
+                                                      <a href="{{ route('get.preference',$admin->id) }}" class="btn blue uppercase btn blue uppercase btn-outline btn-sm" >View Station</a>
+                                                      <div class="mt-card-social">
+                                                          <ul>
+                                                              <li>
+                                                                  <a href="{{$admin->station_contact['url']}}">
+                                                                      <i class="icon-map"></i>
+                                                                  </a>
+                                                              </li>
+                                                              <li>
+                                                                  <a href="{{ route('get.each.station',$admin->id) }}">
+                                                                      <i class="icon-bar-chart"></i>
+                                                                  </a>
+                                                              </li>
+                                                              <li>
+                                                                  <a href=" http://www.kenyapolice.go.ke/ ">
+                                                                      <i class="icon-social-twitter"></i>
+                                                                  </a>
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          @endforeach
+                                      </div>
+                                  @endforeach
+
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
               </div>
               <!-- END CONTENT BODY -->
 
