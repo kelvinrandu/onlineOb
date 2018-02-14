@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="page-container">
           <!-- BEGIN SIDEBAR -->
@@ -69,8 +68,8 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
-                  <h1 class="page-title"> Station analytics
-                      <small>Familiarize yourself with stations around you</small>
+                  <h1 class="page-title"> crime report record
+                      <small></small>
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">
@@ -80,7 +79,7 @@
                               <i class="fa fa-angle-right"></i>
                           </li>
                           <li>
-                              <span>view crime</span>
+                              <span>records</span>
                           </li>
                       </ul>
                       <div class="page-toolbar">
@@ -110,28 +109,62 @@
                           </div>
                       </div>
                   </div>
-                  <div class="container-fluid">
-                    <div class="row">
-                                                      <div class="col-md-4">
-                  <!-- END PAGE HEADER-->
-                   {!! $chart->render() !!}
-         </div>
+                  <div class="todo-container">
+                      <div class="row">
+                          <div class="col-md-10 col-sm-5 col-xs-12 col-centered">
 
-<!-- END PAGE HEADER-->
+                              <div class="todo-tasks-container">
+                                  <div class="todo-head">
 
-      </div>
-      <div class="row">
-                                        <div class="col-md-4">
-    <!-- END PAGE HEADER-->
-    @foreach ($admin as $row)
-       {{$row->id}}:{{$row->station_name}}<br/>
-     @endforeach
-</div>
+                                      <h3>
+                                          <span class="todo-grey"></span> requests</h3>
+                                      <p class="todo-inline">{{$count}} reported crimes
+                                          <a class="todo-add-button" href="#todo-members-modal" data-toggle="modal">+</a>
+                                          <form class="search-form search-form-expanded" action="#" method="GET">
 
-<!-- END PAGE HEADER-->
+                                                  {{ csrf_field() }}
+                                              <div class="input-group col-md-4 pull-right">
+                                                  <input type="text" class="form-control" placeholder="Search..." name="search">
+                                                  <span class="input-group-btn">
+                                                      <a href="javascript:;" class="btn submit">
+                                                          <i class="icon-magnifier"></i>
+                                                      </a>
+                                                  </span>
+                                              </div>
+                                          </form>
+                                      </p>
 
-</div>
-   </div>
+
+                                  </div>
+                                  <ul class="todo-tasks-content">
+                                    @foreach ($requests as $row)
+
+                                      <li class="todo-tasks-item">
+                                          <h4 class="todo-inline">
+                                            @if ($row->status == 3 ||$row->status == 2 )
+                                              <a href="{{ route('client.get.each.assigned.request',$row->id) }}" >me  </a>
+                                                @else
+                                                <a href="{{ route('client.get.each.request',$row->id) }}" >me  </a>
+                                                @endif
+                                          </h4>
+                                          <p class="todo-inline todo-float-r">{{$row->type->name}},<?php $time=$row->created_at->diffForHumans(); ?>
+                                              <span class="todo-red"><?php echo $time ; ?></span>
+                                              @if ($row->status == 0 )
+                                              <?php echo '(pending)' ; ?>
+                                              @elseif($row->status == 3 )
+                                              <?php echo '(closed)' ; ?>
+                                              @else
+                                              <?php echo '(Assigned)' ; ?>
+                                              @endif
+                                          </p>
+                                      </li></a>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
 
               </div>
               <!-- END CONTENT BODY -->
@@ -143,6 +176,4 @@
 
 
       </div>
-      <!-- END CONTAINER -->
-      <!-- BEGIN FOOTER -->
-  @endsection
+@endsection

@@ -33,7 +33,7 @@
                 <ul class="page-breadcrumb">
                     <li>
                         <i class="icon-home"></i>
-                        <a href="{{ route('admin.dashboard') }}">Home</a>
+                        <a href="{{ route('home.dashboard') }}">Home</a>
                         <i class="fa fa-angle-right"></i>
                     </li>
                     <li>
@@ -72,10 +72,17 @@
                     <div class="col-lg-7">
                         <div class="blog-single-content bordered blog-container">
                             <div class="blog-single-head">
-                                <h1 class="blog-single-head-title">{{$statement[0]->type->name}}</h1>
+                               <h1 class="blog-single-head-title">{{$requests[0]->type->name}}
+                                 @if ($requests[0]->status == 0 )
+                                 <?php echo '(pending)' ; ?>
+                                 @elseif($requests[0]->status == 3 )
+                                 <?php echo '(closed)' ; ?>
+                                 @else
+                                 <?php echo '(Assigned)' ; ?>
+                                 @endif</h1>
                                 <div class="blog-single-head-date">
                                     <i class="icon-calendar font-blue"></i>
-                                    <a href="javascript:;">{{ $statement[0]->created_at->format('d/m/Y') }}</a>
+                                    <a href="javascript:;">{{  $requests[0]->created_at->format('d/m/Y') }}</a>
                                 </div>
                             </div>
                             <div class="blog-single-img">
@@ -84,117 +91,98 @@
 
 
                             <div class="blog-single-desc">
-                                <p>{{$statement[0]->crime_description}}</p>
+                                 <p>{{  $requests[0]->crime_description }}</p>
 
 
                             </div>
                             <div class="blog-single-foot pull-right">
-                                <span class="caption-subject font-blue-madison ">  by : {{$statement[0]->user->fName}} {{$statement[0]->user->lName}}</span>
+                                <span class="caption-subject font-blue-madison ">  by :{{Auth::user()->fName}}</span>
+
 
                             </div>
 
-                            @if ($statement[0]->status == 2 )
 
-
-  <a href="{{ route('close.case',$statement[0]->id) }}" class="btn blue uppercase btn blue uppercase btn-outline btn-sm" >Close this case</a>
-  @endif
                         </div>
                     </div>
 
+                    <div class="col-md-12">
 
+                           <!-- BEGIN PORTLET -->
+                           <div class="portlet light ">
+                               <div class="portlet-title">
+                                   <div class="caption caption-md">
+                                       <i class="icon-bar-chart theme-font hide"></i>
+                                       <span class="caption-subject font-blue-madison bold uppercase">Case Contacts</span>
+                                       <!-- <span class="caption-helper">45 pending</span> -->
 
-             <div class="col-md-12">
-
-                    <!-- BEGIN PORTLET -->
-                    <div class="portlet light ">
-                        <div class="portlet-title">
-                            <div class="caption caption-md">
-                                <i class="icon-bar-chart theme-font hide"></i>
-                                <span class="caption-subject font-blue-madison bold uppercase">Case Contacts</span>
-                                <!-- <span class="caption-helper">45 pending</span> -->
-
-                            </div>
-
-
-
-                            <div class="blog-single-head-date pull-right">
-                                <i class="icon-calendar font-blue"></i>
-                                <a href="javascript:;"></a>
-                            </div>
-                            <!-- <div class="inputs">
-                                <div class="portlet-input input-inline input-small ">
-                                    <div class="input-icon right">
-                                        <i class="icon-magnifier"></i>
-                                        <input type="text" class="form-control form-control-solid" placeholder="search..."> </div>
-                                </div>
-                            </div> -->
-                        </div>
-
-
-                        <div class="portlet-body">
-                            <div class="scroller" style="height: 270px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                <div class="general-item-list">
-
-
-                              <div class="item">
-                                  <div class="item-head">
-                                      <div class="item-details">
-                                          <a href="" class="item-name primary-link">OB number:{{$requests[0]->ob_number}}</a>
-
-                                          <!-- <img class="item-pic" src="{{asset('layout_assets/pages/media/users/avatar12.png')}}"> -->
-
-                                      </div>
-                                      <span class="item-status">
-                                          <!-- <span class="badge badge-empty badge-success"></span> </span> -->
-                                  </div>
-                                  <div class="item-body">statement:{{$requests[0]->statement}}</div>
-                                    <div class="item-body">
-                                      @if($case->contacts)
-                                      <div class="item-body">Assigned to : {{$case->contacts[0]->rank}} {{$case->contacts[0]->Fname}}{{$case->contacts[0]->Lname}} </div>
-                                     <div class="item-body">phone number: {{$case->contacts[0]->phone }}</div>
-                                     <div class="item-body">Email: {{$case->contacts[0]->email}}</div>
-                                     @else
-                                     @endif </div>
+                                   </div>
 
 
 
-                              </div>
+                                   <div class="blog-single-head-date pull-right">
+                                       <i class="icon-calendar font-blue"></i>
+                                       <a href="javascript:;">{{  $case->created_at->format('d/m/Y') }}</a>
+                                   </div>
+                                   <!-- <div class="inputs">
+                                       <div class="portlet-input input-inline input-small ">
+                                           <div class="input-icon right">
+                                               <i class="icon-magnifier"></i>
+                                               <input type="text" class="form-control form-control-solid" placeholder="search..."> </div>
+                                       </div>
+                                   </div> -->
+                               </div>
 
 
+                               <div class="portlet-body">
+                                   <div class="scroller" style="height: 270px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                       <div class="general-item-list">
 
 
-                                </div>
-                                <div class="blog-single-foot pull-right">
-                                    <span class="caption-subject font-blue-madison "> by: police number:{{$requests[0]->police_number}}  </span>
+                                     <div class="item">
+                                         <div class="item-head">
+                                             <div class="item-details">
+                                                 <a href="" class="item-name primary-link">OB number: {{$statements[0]->ob_number}}</a>
+
+                                                 <!-- <img class="item-pic" src="{{asset('layout_assets/pages/media/users/avatar12.png')}}"> -->
+
+                                             </div>
+                                             <span class="item-status">
+                                                 <!-- <span class="badge badge-empty badge-success"></span> </span> -->
+                                         </div>
+
+                                         <div class="item-body">statement:{{$statements[0]->statement}}</div>
+                                           <div class="item-body"> </div>
+                                          @if($case->contact)
+                                          <div class="item-body">Assigned to : {{$case->contacts[0]->rank}} {{$case->contacts[0]->Fname}} {{$case->contacts[0]->lname}} </div>
+                                         <div class="item-body">phone number: {{$case->contacts[0]->phone }}</div>
+                                         <div class="item-body">Email: {{$case->contacts[0]->email}}</div>
+                                         @else
+                                         @endif
 
 
-
-                                </div>
-                            </div>
+                                     </div>
 
 
 
 
-                        </div>
-
-                    </div>
-
-                </div>
+                                       </div>
+                                       <div class="blog-single-foot pull-right">
+                                         <span class="caption-subject font-blue-madison "> by officer: {{$statements[0]->police_number}} </span>
 
 
-
-
-
-                                  </div>
-                              </div>
+                                       </div>
+                                   </div>
 
 
 
-                          </div>
 
-                      </div>
+                               </div>
 
-                  </div>
+                           </div>
+
+                       </div>
+
+
 
 
             </div>

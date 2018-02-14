@@ -37,6 +37,9 @@ Route::get('/station/{id}/contacts', 'UserController@contacts')->name('get.conta
 Route::get('/station/{id}/trend', 'UserController@station_trend')->name('get.trend');
 Route::get('/station/{id}/today', 'UserController@today')->name('get.today');
 Route::get('/search/preference', 'UserController@search')->name('search');
+Route::get('/view/requests', 'UserController@allRequest')->name('view.all.requests');
+Route::get('/view/{id}/request', 'UserController@eachRequest')->name('client.get.each.request');
+Route::get('/view/{id}/case/request', 'UserController@eachAssignedRequest')->name('client.get.each.assigned.request');
 
 
 
@@ -69,5 +72,6 @@ Route::prefix('admin')->group(function(){
   // Route::get('/search/preference/admin', 'AdminController@search')->name('detective.search');
   Route::get('/station/trend/detecive', 'DetectiveController@station_trend')->name('get.detective.trend');
   Route::get('/detective/each/{id}/report', 'DetectiveController@get_each_report')->name('detective.get.each.report');
-    Route::get('/detecive/report', 'DetectiveController@get_reports')->name('detective.get.report');
+  Route::get('/detecive/report', 'DetectiveController@get_reports')->name('detective.get.report');
+  Route::get('/detecive/close/{id}/case', 'DetectiveController@close_case')->name('close.case');
 });

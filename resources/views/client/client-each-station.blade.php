@@ -35,6 +35,14 @@
 
                       </li>
                       <li class="nav-item  ">
+                          <a href="{{ route('view.all.requests') }}" class="nav-link nav-toggle">
+                              <i class="icon-eye"></i>
+                              <span class="title">View my requests</span>
+                              <span class="arrow"></span>
+                          </a>
+
+                      </li>
+                      <li class="nav-item  ">
                           <a href="{{ route('get.analytics') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Analytics</span>
@@ -104,7 +112,7 @@
                   <!-- END PAGE HEADER-->
 
    {!! $chart->render() !!}
-    
+
        <!-- END PAGE HEADER-->
        @foreach ($type as $row)
           {{$row->id}}:{{$row->name}}<br/>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use  Auth;
 use App\Report_crime;
+use App\Statement;
+use App\Court_case;
 use App\Type;
 use App\Notifications\RequestReceived;
 use App\Admin;
@@ -56,21 +58,52 @@ class UserController extends Controller
 
      return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin,'type'=>$type]);
   }
+
   //my request
-  public function myRequest($id)
+  public function allRequest()
   {
-     //       $labels = Report_crime::with('admin')->get();
+           $id = Auth::id();
+            $requests = Report_crime::with('type')
+            ->where('user_id',$id)->get();
+            $count = count($requests);
+
      //       $admin= DB::table('admins')->where('status',0)->get();
+
+      return view('client/client-view-all-requests',['requests'=> $requests ,'count'=>$count]);
+  }
+  //my request
+  public function eachRequest($id)
+  {
+     //       $id = Auth::id();
+            $requests = Report_crime::with('type')
+            ->where('id',$id)->get();
      //
-     //       $chart = Charts::database($labels,'bar','highcharts')
-     //           ->title('Crime rate in Nairobi')
-     //           ->groupBy('admin_id')
-     //            ->elementLabel('Number of reported crimes')
-     //           // ->values([5,10,20,15,30])
-     //          ->dimensions(1000,500)
-     //          ->responsive(false);
+     // //       $admin= DB::table('admins')->where('status',0)->get();
      //
-     // return view('client/client_analytics',['chart'=>$chart,'admin'=>$admin]);
+    return view('client/client-view-each-request',['requests'=> $requests ,'admin'=>$id]);
+
+  }
+  public function eachAssignedRequest($id)
+  {
+     //      $id = Auth::id();
+            $requests = Report_crime::with('type')
+            ->where('id',$id)->get();
+            $statements = Statement::with('admin')
+            ->where('crime_id', $id)
+            ->get();
+            $case = Court_case::with('contacts')
+            ->where('report_crimes_id',$id)
+            ->first();
+
+//             if($case->contacts->isEmpty()){
+                return view('client/client-view-each-assigned-request',['requests'=> $requests ,'statements'=>  $statements,'case'=>  $case]);
+//
+//             }
+//
+// return view('client/client-view-each-request',['requests'=> $requests ,'admin'=>$id]);
+
+
+
   }
   //fetches  preferences
   public function preference($id)

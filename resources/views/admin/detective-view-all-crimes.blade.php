@@ -137,10 +137,12 @@
                                           </h4>
                                           <p class="todo-inline todo-float-r">{{$row->type->name}},<?php $time=$row->created_at->diffForHumans(); ?>
                                               <span class="todo-red"><?php echo $time ; ?></span>
-                                                @if ($row->status == 0 )
-                                                <?php echo '(pending)' ; ?>
-                                                @else
+                                                @if ($row->status == 3 )
                                                 <?php echo '(closed)' ; ?>
+                                                @elseif($row->status == 1 || $row->status == 2 )
+                                                <?php echo '(Assigned)' ; ?>
+                                                @else
+                                                  <?php echo '(Pending)' ; ?>
                                                 @endif
                                           </p>
                                       </li></a>

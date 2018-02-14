@@ -262,10 +262,11 @@ public function station_trend()
             //
             // ->get();
 
-            $requests = Report_crime::with('user')->where('report_crimes.status',2)
+            $requests = Report_crime::with('user')->where('status',2)
+             ->orWhere('status',3)
 
-             ->where('report_crimes.admin_id', $id)
-              ->leftJoin('court_cases', 'court_cases.report_crimes_id', '=', 'report_crimes.id')
+             ->where('admin_id', $id)
+
             ->get();
             $count= count($requests);
 
@@ -340,8 +341,20 @@ public function get_each_report($id)
         ->get();
 
 
- return view('admin/detective-view-each-case',['request' => $request,'requests' => $requests,'statement' => $statement,'case' => $case]);
+   return view('admin/detective-view-each-case',['request' => $request,'requests' => $requests,'statement' => $statement,'case' => $case]);
 
 
   }
+  //close case
+  public function close_case($id)
+  {
+    $crime = Report_crime::find($id);
+     if($crime){
+       $crime->status =3;
+       $crime->save();
+         return redirect()->back()->with('message','case closed succesfully');
+
+    }
+    return redirect()->back()->with('message','case closed not succesfull please try again');
+}
 }
