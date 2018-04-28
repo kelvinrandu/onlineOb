@@ -852,236 +852,55 @@
                                 <a class="btn red btn-outline" href="http://vadimg.com/twitter-bootstrap-wizard-example" target="_blank">the official documentation</a>
                             </p>
                         </div> -->
-                        <div class="portlet light " id="form_wizard_1">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class=" icon-layers font-red"></i>
-                                    <span class="caption-subject font-red bold uppercase">
-                                        <span class="step-title"> Step 1 of 4 </span>
-                                    </span>
-                                </div>
-                                <div class="actions">
-                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                        <i class="icon-cloud-upload"></i>
-                                    </a>
-                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                        <i class="icon-wrench"></i>
-                                    </a>
-                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                        <i class="icon-trash"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="portlet-body form">
-                                 <form class="form-horizontal" action="crime" id="submit_form" method="POST">
-                                <!-- <form role="form" action="crime" method="post" > -->
-                                    {{ csrf_field() }}
-                                    <div class="form-wizard">
-                                        <div class="form-body">
-                                            <ul class="nav nav-pills nav-justified steps">
-                                                <li>
-                                                    <a href="#tab1" data-toggle="tab" class="step">
-                                                        <span class="number"> 1 </span>
-                                                        <span class="desc">
-                                                            <i class="fa fa-check"></i> Select police station </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#tab2" data-toggle="tab" class="step">
-                                                        <span class="number"> 2 </span>
-                                                        <span class="desc">
-                                                            <i class="fa fa-check"></i> Personal info </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#tab3" data-toggle="tab" class="step active">
-                                                        <span class="number"> 3 </span>
-                                                        <span class="desc">
-                                                            <i class="fa fa-check"></i> Make statement </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#tab4" data-toggle="tab" class="step">
-                                                        <span class="number"> 4 </span>
-                                                        <span class="desc">
-                                                            <i class="fa fa-check"></i> Confirm </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div id="bar" class="progress progress-striped" role="progressbar">
-                                                <div class="progress-bar progress-bar-success"> </div>
-                                            </div>
-                                            <div class="tab-content">
-                                                <div class="alert alert-danger display-none">
-                                                    <button class="close" data-dismiss="alert"></button> You have some form errors. Please check below. </div>
-                                                <div class="alert alert-success display-none">
-                                                    <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
-                                                <div class="tab-pane active" id="tab1">
-                                                    <h3 class="block">Select police station</h3>
+                        <div class="container-fluid">
+                          <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="portlet box red">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <i class="fa fa-gift"></i>Add Detective </div>
+                                                                        <div class="tools">
+                                                                            <a href="javascript:;" class="collapse"> </a>
+                                                                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                                                                            <a href="javascript:;" class="reload"> </a>
+                                                                            <a href="javascript:;" class="remove"> </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body form">
+                                                                        <!-- BEGIN FORM-->
+                                                                        <form  method="POST" action="{{ route('post.event') }}">
+                                                                              {{ csrf_field() }}
 
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Type of crime
-                                                            <span class="required"> * </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                          <select class="form-control" name="fullname">
+                                                                            <div class="form-body">
+                                                                              <div class="form-group">
+                                                                                <label class="control-label">event</label>
+                                                                                <input type="text"name="event"class="form-control" placeholder="Enter text">
 
-                                                            <option disabled selected value>--type of crime--</option>
-                                                             @foreach ($type as $row)
-                                                               <option  value="{{$row->id}}">{{$row->name}} </option>
-                                                            @endforeach
+                                                                            </div>
+                                                                             <div class="form-group">
+                                                                                <label class="control-label">days</label>
+                                                                                <input type="number" name="days"class="form-control" placeholder="Enter text">
+
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                               <label class="control-label">status</label>
+                                                                               <input type="text" name="status" class="form-control" placeholder="Enter text">
+
+                                                                           </div>
 
 
-                                                        </select>
-                                                            <!-- <input type="password" class="form-control" name="password" id="submit_form_password" /> -->
-                                                            <span class="help-block"> Provide your type </span>
-                                                        </div>
-                                                    </div>
+                                                                            </div>
 
-                                                     <div class="form-group">
-                                                        <label class="control-label col-md-3">Police station
-                                                            <span class="required"> * </span>
-                                                        </label>
-                                                        <div class="col-md-4">
+                                                                            <div class="form-actions">
+                                                                                <button type="submit" class="btn green">Submit</button>
+                                                                                <button type="button" class="btn default">Cancel</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <!-- END FORM-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                            <select class="form-control" name="country">
-
-                                                              <option disabled selected value>--police station-- </option>
-                                                               @foreach ($ward as $row)
-                                                                 <option  value="{{$row->id}}">{{$row->station_name}} </option>
-                                                              @endforeach
-
-
-                                                          </select>
-                                                            <span class="help-block"> Provide the police station </span>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="tab2">
-                                                    <h3 class="block">Provide your Personal info </h3>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">ID Number
-                                                            <span class="required"> * </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" name="idNo" />
-                                                            <span class="help-block"> Provide your id number </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Phone Number
-                                                            <span class="required"> * </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" name="phone" />
-                                                            <span class="help-block"> Provide your phonenumber</span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="tab-pane" id="tab3">
-                                                    <h3 class="block">Record your statement</h3>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Date
-                                                            <span class="required"> * </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="date" class="form-control" name="gender" />
-                                                            <span class="help-block"> </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Statement</label>
-                                                        <div class="col-md-4">
-                                                            <textarea class="form-control" rows="3" name="remarks"></textarea>
-                                                        </div>
-                                                    </div>
-                                          
-
-                                                </div>
-                                                <div class="tab-pane" id="tab4">
-                                                    <h3 class="block">Confirm your request</h3>
-                                                    <h4 class="form-section">Station</h4>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Station:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="country"> </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <h4 class="form-section">Personal info</h4>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Name: </label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="gender">{{Auth::user()->fName}} {{Auth::user()->lName}} </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Id number:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="idNo"> </p>
-                                                        </div>
-                                                    </div>
-                                                     <div class="form-group">
-                                                        <label class="control-label col-md-3">Phone:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="phone"> </p>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <h4 class="form-section">Statement</h4>
-                                                    <!-- <div class="form-group">
-                                                        <label class="control-label col-md-3">Date:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="gender"> </p>
-                                                        </div>
-                                                    </div> -->
-                                                      <div class="form-group">
-                                                          <label class="control-label col-md-3">Type of crime:</label>
-                                                          <div class="col-md-4">
-                                                              <p class="form-control-static" data-display="fullname"> </p>
-                                                          </div>
-                                                      </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Statement:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="remarks"> </p>
-                                                          </div>
-                                                        </div>
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="col-md-offset-3 col-md-9">
-                                                    <a href="javascript:;" class="btn default button-previous">
-                                                        <i class="fa fa-angle-left"></i> Back </a>
-                                                    <a href="javascript:;" class="btn btn-outline green button-next"> Continue
-                                                        <i class="fa fa-angle-right"></i>
-                                                    </a>
-                                                    <button class="btn green button-submit" type="submit">Finish!</button>
-                                                    <!-- <a href="javascript:;" class="btn green button-submit"> Submit
-                                                        <i class="fa fa-check"></i>
-                                                    </a> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- END CONTENT BODY -->
         </div>

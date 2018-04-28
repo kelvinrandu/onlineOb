@@ -112,13 +112,20 @@ class UserController extends Controller
       $admin_id=$id;
       $admin= DB::table('admins')->where('id',$admin_id)->get();
       $url = Station_contact::with('admin')->where('admin_id',$admin_id)->value('url');
+      $all = Report_crime::with('type')
+      ->where('admin_id',$admin_id)->get();
+      $closed = Report_crime::with('type')
+      ->where('admin_id',$admin_id)->where('status',3)->get();
+      $allcount=count($all);
+      $closedcount=count($closed);
+        $rate=  ceil(($closedcount/$allcount)*100);
 
       // $url= DB::table('station_contacts')->where('admin_id',$admin_id)->value('url');
       $admin_name=$admin[0]->station_name;
 
 
-
- return view('client/client-preferrences',['admin_id'=>$admin_id,'admin'=>$admin_name,'url'=>$url]);
+ //
+  return view('client/client-preferrences',['admin_id'=>$admin_id,'admin'=>$admin_name,'url'=>$url,'rate'=>$rate]);
 
 
 

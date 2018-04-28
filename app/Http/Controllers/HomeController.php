@@ -32,14 +32,14 @@ class HomeController extends Controller
     {
 
               Mapper::map(53.381128999999990000, -1.470085000000040000);
-             $labels = Report_crime::with('admin')->get();
+             $crime = Report_crime::with('admin')->get();
              $admin= Admin::with('station_contact')->where('status',0)->get();
     //  $admin = Admin::with('type')->where('status',1)
     //  ->get();
 
 
 
-     return view('client/client_dashboard',['admin'=>$admin]);
+     return view('client/client_dashboard',['admin'=>$admin,'crime'=>$crime]);
 
 
     }

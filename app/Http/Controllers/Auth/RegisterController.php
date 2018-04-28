@@ -109,6 +109,7 @@ class RegisterController extends Controller
     //verify email function
     public function sendEmailDone($email,$verifyToken)
     {
+        Session::flash('status','Account verified...you may login in');
        $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
        if($user){
           User::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>'1','verifyToken'=>NULL ]);

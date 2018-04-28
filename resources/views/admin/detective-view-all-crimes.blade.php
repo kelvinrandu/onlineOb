@@ -17,7 +17,7 @@
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                       <li class="nav-item start active open">
-                          <a href="{{ route('admin.dashboard') }}" class="nav-link nav-toggle">
+                          <a href="{{ route('detective.dashboard') }}" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
                               <span class="selected"></span>
@@ -26,15 +26,15 @@
 
                       </li>
                       <li class="nav-item  ">
-                        <a href="{{ route('admin.get.report') }}" class="nav-link nav-toggle">
-                            <i class="icon-eye"></i>
-                            <span class="title">View crime reports</span>
-                            <span class="arrow"></span>
-                        </a>
+                          <a href="{{ route('detective.get.report') }}" class="nav-link nav-toggle">
+                              <i class="icon-eye"></i>
+                              <span class="title">View cases</span>
+                              <span class="arrow"></span>
+                          </a>
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="{{ route('get.admin.trend') }}" class="nav-link nav-toggle">
+                          <a href="{{ route('get.detective.trend') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Analytics</span>
                               <span class="arrow"></span>
@@ -42,7 +42,14 @@
 
                       </li>
 
-                  </ul>
+                      <li class="nav-item  ">
+                          <a href="{{ route('detective.get.detective') }}" class="nav-link nav-toggle">
+                              <i class="icon-users"></i>
+                              <span class="title">Add detective</span>
+                              <span class="arrow"></span>
+                          </a>
+
+                      </li>
                   <!-- END SIDEBAR MENU -->
               </div>
               <!-- END SIDEBAR -->

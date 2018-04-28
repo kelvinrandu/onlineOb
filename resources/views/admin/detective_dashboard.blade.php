@@ -16,7 +16,7 @@
                   <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                   <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                       <li class="nav-item start active open">
-                          <a href="javascript:;" class="nav-link nav-toggle">
+                          <a href="{{ route('detective.dashboard') }}" class="nav-link nav-toggle">
                               <i class="icon-home"></i>
                               <span class="title">Dashboard</span>
                               <span class="selected"></span>

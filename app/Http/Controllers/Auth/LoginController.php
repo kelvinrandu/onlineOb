@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 
 use App\Http\Controllers\Controller;
-  use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Redirect;
 
@@ -58,7 +58,7 @@ class LoginController extends Controller
    public function handleProviderCallback()
    {
 
-     $userSocial = Socialite::driver('facebook')->user();
+      $userSocial = Socialite::driver('facebook')->user();
 
 
      if($userSocial->email){
@@ -84,8 +84,6 @@ class LoginController extends Controller
          return redirect('home')->with('success','sign up succesfull');
 
        }
-
-
 
      }
 

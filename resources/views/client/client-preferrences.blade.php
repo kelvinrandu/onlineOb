@@ -69,8 +69,11 @@
           @if(Session::has('message'))
               <div class="alert alert-success"><em> {!! session('message') !!}</em></div>
           @endif
+          @if($rate != 0)
+          <div class="alert alert-success">  <strong><div class="pull right"> {{$admin}} has {{$rate}}% of total reported cases  closed</div></strong>  </div>
+          @endif
                   <h1 class="page-title"> {{$admin}}
-                      <small>station analysis</small>
+                      <!-- <small>station analysis</small> -->
                   </h1>
                   <div class="page-bar">
                       <ul class="page-breadcrumb">

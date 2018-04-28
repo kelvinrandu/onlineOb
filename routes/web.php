@@ -40,6 +40,9 @@ Route::get('/search/preference', 'UserController@search')->name('search');
 Route::get('/view/requests', 'UserController@allRequest')->name('view.all.requests');
 Route::get('/view/{id}/request', 'UserController@eachRequest')->name('client.get.each.request');
 Route::get('/view/{id}/case/request', 'UserController@eachAssignedRequest')->name('client.get.each.assigned.request');
+// for testing purposes
+Route::get('/event', 'EventController@index')->name('get.event');
+Route::post('/post/event', 'EventController@create')->name('post.event');
 
 
 

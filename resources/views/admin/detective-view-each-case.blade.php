@@ -33,7 +33,7 @@
                 <ul class="page-breadcrumb">
                     <li>
                         <i class="icon-home"></i>
-                        <a href="{{ route('admin.dashboard') }}">Home</a>
+                        <a href="{{ route('detective.dashboard') }}">Home</a>
                         <i class="fa fa-angle-right"></i>
                     </li>
                     <li>
