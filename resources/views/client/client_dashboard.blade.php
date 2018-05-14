@@ -51,7 +51,7 @@
 
                       </li>
                       <li class="nav-item  ">
-                          <a href="{{ route('get.event') }" class="nav-link nav-toggle">
+                          <a href="{{ route('get.event') }}" class="nav-link nav-toggle">
                               <i class="icon-bar-chart"></i>
                               <span class="title">Make events</span>
                               <span class="arrow"></span>
