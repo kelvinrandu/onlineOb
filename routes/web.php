@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/chat', 'ChatController@index')->name('chat');
 
 //verify email route
 Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
