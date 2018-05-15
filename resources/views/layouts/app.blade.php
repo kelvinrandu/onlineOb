@@ -8,6 +8,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+    </script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -326,12 +331,14 @@
             <!-- BEGIN PAGE LEVEL SCRIPTS -->
             <script src="{{asset('layout_assets/pages/scripts/form-wizard.min.js')}}" type="text/javascript"></script>
             <script src="{{asset('layout_assets/pages/scripts/profile.min.js')}}" type="text/javascript"></script>
+            <script src="{{asset('layout_assets/apps/scripts/todo.min.js')}}" type="text/javascript"></script>
             <!-- END PAGE LEVEL SCRIPTS -->
             <!-- BEGIN THEME LAYOUT SCRIPTS -->
             <script src="{{asset('layout_assets/layouts/layout2/scripts/layout.min.js')}}" type="text/javascript"></script>
             <script src="{{asset('layout_assets/layouts/layout2/scripts/demo.min.js')}}" type="text/javascript"></script>
             <script src="{{asset('layout_assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
             <script src="{{asset('layout_assets/layouts/global/scripts/quick-nav.min.js')}}" type="text/javascript"></script>
+              <script src="{{asset('js/app.js')}}" ></script>
 
 </body>
 </html>

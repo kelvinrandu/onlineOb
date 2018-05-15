@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/chat', 'ChatController@index')->name('chat');
+
 
 //verify email route
 Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
@@ -44,6 +44,13 @@ Route::get('/view/{id}/case/request', 'UserController@eachAssignedRequest')->nam
 // for testing purposes
 Route::get('/event', 'EventController@index')->name('get.event');
 Route::post('/post/event', 'EventController@create')->name('post.event');
+//chat function
+Route::get('/chat', 'ChatController@index')->name('chat');
+Route::get('/getMessages', function(){
+  $allUsers = DB::table('users')->where('id','!=', Auth::user()->id)->get();
+  return $allUsers;
+
+});
 
 
 

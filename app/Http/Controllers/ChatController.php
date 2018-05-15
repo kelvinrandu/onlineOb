@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Chat;
 use Illuminate\Http\Request;
+use  Auth;
+use App\User;
 
 class ChatController extends Controller
 {
@@ -12,6 +14,11 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
          return view('Chat/chat');

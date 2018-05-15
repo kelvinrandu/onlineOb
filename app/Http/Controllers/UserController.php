@@ -114,14 +114,25 @@ class UserController extends Controller
       $url = Station_contact::with('admin')->where('admin_id',$admin_id)->value('url');
       $all = Report_crime::with('type')
       ->where('admin_id',$admin_id)->get();
-      $closed = Report_crime::with('type')
-      ->where('admin_id',$admin_id)->where('status',3)->get();
-      $allcount=count($all);
-      $closedcount=count($closed);
+
+        $closed = Report_crime::with('type')
+        ->where('admin_id',$admin_id)->where('status',3)->get();
+        $allcount=count($all);
+        $closedcount=count($closed);
+
+        if($allcount!=0 && $closedcount!=0 ){
+
         $rate=  ceil(($closedcount/$allcount)*100);
+        $admin_name=$admin[0]->station_name;
+      }else{
+        $rate = 'undefined';
+        $admin_name=$admin[0]->station_name;
+      }
+
+
 
       // $url= DB::table('station_contacts')->where('admin_id',$admin_id)->value('url');
-      $admin_name=$admin[0]->station_name;
+
 
 
  //

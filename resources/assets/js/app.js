@@ -20,5 +20,28 @@ Vue.component('chat', require('./components/Chat.vue'));
 
 
 const app = new Vue({
-    el: '#app'
-});
+    el: '#app',
+    data: {
+  msg: 'Make Post:',
+  content: '', updatedContent:'',
+  posts: [],
+  postId: '',
+  privateMsgs: [],
+ },
+ ready: function(){
+  this.created();
+
+},
+
+created(){
+  axios.get('http://localhost:8000/getMessages')
+       .then(response => {
+         console.log(response.data); // show if success
+         app.privateMsgs = response.data; //we are putting data into our posts array
+       })
+       .catch(function (error) {
+         console.log(error); // run if we have error
+       });
+},
+
+   });
