@@ -1052,7 +1052,7 @@ var app = new Vue({
   },
 
   created: function created() {
-    axios.get('http://localhost:8000/getMessages').then(function (response) {
+    axios.get('http://localhost:8000/getHoods').then(function (response) {
       console.log(response.data); // show if success
       app.privateMsgs = response.data; //we are putting data into our posts array
     }).catch(function (error) {

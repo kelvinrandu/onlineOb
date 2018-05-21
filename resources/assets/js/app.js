@@ -37,7 +37,7 @@ const app = new Vue({
 },
 
 created(){
-  axios.get('http://localhost:8000/getMessages')
+  axios.get('http://localhost:8000/getHoods')
        .then(response => {
          console.log(response.data); // show if success
          app.privateMsgs = response.data; //we are putting data into our posts array
@@ -46,5 +46,7 @@ created(){
          console.log(error); // run if we have error
        });
 },
+
+
 
    });

@@ -46,9 +46,14 @@ Route::get('/event', 'EventController@index')->name('get.event');
 Route::post('/post/event', 'EventController@create')->name('post.event');
 //chat function
 Route::get('/chat', 'ChatController@index')->name('chat');
-Route::get('/getMessages', function(){
+Route::get('/getHoods', function(){
   $allUsers = DB::table('hoods')->get();
   return $allUsers;
+
+});
+Route::get('/getChat/{id}', function(){
+  $chat = App\Message::with('conversations')->get();
+  return $chat;
 
 });
 
