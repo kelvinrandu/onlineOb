@@ -18,6 +18,10 @@ class User extends Authenticatable
   {
       return $this->hasMany('App\Report_crime');
   }
+  public function messages()
+{
+    return $this->hasMany('App\Message');
+}
   public function conversations()
   {
     return $this->hasOne('App\Conversation');

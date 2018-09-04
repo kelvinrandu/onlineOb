@@ -13,8 +13,13 @@ class Hood extends Model
   protected $fillable = [
       'name',  'code','user_id',
   ];
-  public function user()
-  {
-    return $this->belongsTo('App\User');
-  }
+  
+  public function messages()
+{
+    return $this->hasMany('App\Message');
+}
+public function conversations()
+{
+  return $this->hasMany('App\Conversation');
+}
 }

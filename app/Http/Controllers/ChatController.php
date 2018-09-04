@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Chat;
 use Illuminate\Http\Request;
+use App\Console\Commands\UpdateAnnouncement;
 use  Auth;
 use App\User;
 

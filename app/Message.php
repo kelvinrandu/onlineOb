@@ -13,9 +13,6 @@ class Message extends Model
   protected $fillable = [
       'message',  'media_url',
   ];
-  public function conversations()
-  {
-    return $this->hasOne('App\Conversation');
-  }
+
 
 }
