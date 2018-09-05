@@ -2,7 +2,7 @@
 # ONLINE-OB
 A portal that links investors to startups
 ## DESCRIPTION
-Online-ob is a laravel powered application intended to provide a platform that promotes interaction between the police and members of the public inform of a digitalised Occurrence book.
+Online-ob is a  [laravel](https://laravel.com/docs)powered application intended to provide a platform that promotes interaction between the police and members of the public inform of a digitalised Occurrence book.
 Some of the features the application provides include
 - Viewing of police stations and information regarding the police station
 - Reporting crime to police station of choice by members of the public
@@ -16,7 +16,7 @@ Minimum requirements needed to run this application include;
 - [xampp](https://www.apachefriends.org/download.html)
 
 ## TESTING THE APPLICATION
-- clone [this](https://github.com/kelvinrandu/My-diary-api/tree/master) repository
+- clone [this](https://github.com/kelvinrandu/onlineOb.git) repository
 - create your [database](https://complete-concrete-concise.com/web-tools/creating-a-mysql-database-using-xampp) named ```onlineob```
 - navigate to the project directory
 - add .env file and configure with your database settings
