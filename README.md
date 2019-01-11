@@ -1,6 +1,6 @@
 
 # ONLINE-OB
-A portal that links investors to startups
+Bringing the Occurrence book to you
 ## DESCRIPTION
 Online-ob is a  [laravel](https://laravel.com/docs)powered application intended to provide a platform that promotes interaction between the police and members of the public inform of a digitalised Occurrence book.
 Some of the features the application provides include
